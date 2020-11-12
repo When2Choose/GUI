@@ -1,0 +1,9 @@
+div.LeftMenu {
+    float: left;
+    display: flex;
+    padding-right: 10px;
+}
+
+div.RightMenu {
+    float: right;
+}
