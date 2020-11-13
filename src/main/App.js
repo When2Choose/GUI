@@ -12,6 +12,7 @@ import CreateChoice from "./CreateChoice";
 import Menu from "./Menu";
 import Login from "./Login";
 import ViewChoice from "./ViewChoice";
+import Administrator from "./Administrator";
 import {ThemeProvider} from "@material-ui/styles";
 import {useMediaQuery, createMuiTheme, CssBaseline} from "@material-ui/core";
 
@@ -37,6 +38,9 @@ function App() {
                 <BrowserRouter>
                     <Menu/>
                     <Switch>
+                        <Route path="/administrator">
+                          <Administrator/>
+                        </Route>
                         <Route path="/view">
                             <ViewChoice/>
                         </Route>
