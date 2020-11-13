@@ -11,7 +11,9 @@ function Menu() {
             <AppBar id="MenuBar" position="static">
                 <Toolbar id="toolbar" style={{display: "flex", justifyContent: "space-between"}}>
                     <div className="LeftMenu">
-                        <Button variant="contained" id="Scroll" color="default">Scroll Up </Button>
+                        <Link to="/view">
+                            <Button variant="contained" id="Scroll" color="default">Scroll Up</Button>
+                        </Link>
                         <span style={{width: 10}}/>
                         <Link to="/create">
                             <Button variant="contained" id="Create" color="default">Create New Choice</Button>

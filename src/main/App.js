@@ -10,6 +10,7 @@ import './App.css';
 import CreateChoice from "./CreateChoice";
 import Menu from "./Menu";
 import Login from "./Login";
+import ViewChoice from "./ViewChoice";
 
 
 function App() {
@@ -19,6 +20,9 @@ function App() {
         <BrowserRouter>
             <Menu/>
             <Switch>
+                <Route path="/view">
+                    <ViewChoice/>
+                </Route>
                 <Route path="/create">
                     <CreateChoice/>
                 </Route>

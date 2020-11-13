@@ -1,0 +1,11 @@
+div.ChoiceDescriptionContent {
+    padding-top: 5px;
+    float: left;
+    width: 70%;
+}
+
+div.CompleteChoice {
+    padding-top: 5px;
+    float: right;
+    width: 30%;
+}
