@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 function Menu() {
     return (
         <div className="Menu">
-            <AppBar id="MenuBar" position="static">
+            <AppBar id="MenuBar" >
                 <Toolbar id="toolbar" style={{display: "flex", justifyContent: "space-between"}}>
                     <div className="LeftMenu">
                         <Link to="/view">

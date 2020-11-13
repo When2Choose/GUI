@@ -47,7 +47,7 @@ function Alternative(props) {
                             </Grid>
                             <Grid item xs={6}>
                                 <Button variant="contained" id="Disapprove" color="primary" style={{float: "left"}}>Disapprove</Button>
-                            </Grid> 
+                            </Grid>
                             <Grid item xs={6} id="approvers">
                                 {/*<FixedSizeList height={400} width={300} itemSize={46} itemCount={200}>*/}
                                 {/*    {renderRow}*/}
