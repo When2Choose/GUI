@@ -1,0 +1,25 @@
+div.AlternativeHeading {
+    float:left;
+    clear: both;
+}
+
+div.AlternativeDescription {
+    clear: both;
+    float: left;
+}
+
+div.ApprovalContent {
+    clear:both;
+}
+
+div.ApprovalPane {
+    float: left;
+    clear: both;
+    display: block;
+}
+
+div.DisapprovalPane {
+    float: right;
+    clear: both;
+    display: block;
+}
