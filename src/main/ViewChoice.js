@@ -1,10 +1,7 @@
 import React from "react";
-import {Button, Typography} from "@material-ui/core";
-import Card from '@material-ui/core/Card';
+import {Button, Typography, Grid} from "@material-ui/core";
 import Alternative from "./Alternatives";
 import "./ViewChoice.css";
-import Grid from "@material-ui/core/Grid";
-import CardContent from "@material-ui/core/CardContent";
 
 function ViewChoice() {
     return (
