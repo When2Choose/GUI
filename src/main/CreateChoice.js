@@ -1,9 +1,6 @@
 import React from "react";
-import TextField from '@material-ui/core/TextField';
-import Button from "@material-ui/core/Button";
+import {Typography, TextField, Button} from "@material-ui/core";
 import "./CreateChoice.css"
-import {Typography} from "@material-ui/core";
-
 
 function CreateChoice() {
     return (
