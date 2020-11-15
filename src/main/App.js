@@ -14,6 +14,7 @@ import Login from "./Login";
 import ViewChoice from "./ViewChoice";
 import {ThemeProvider} from "@material-ui/styles";
 import {useMediaQuery, createMuiTheme, CssBaseline} from "@material-ui/core";
+import CompleteChoice from "./CompleteChoice";
 
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
 
     return (
         <ThemeProvider theme={theme}>
-            <CssBaseline />
+            <CssBaseline/>
             <div className="App">
                 <BrowserRouter>
                     <Menu/>
@@ -42,6 +43,9 @@ function App() {
                         </Route>
                         <Route path="/create">
                             <CreateChoice/>
+                        </Route>
+                        <Route path="/complete">
+                            <CompleteChoice/>
                         </Route>
                         <Route path="/">
                             <Login/>
