@@ -1,7 +1,5 @@
 import React from "react";
-import AppBar from "@material-ui/core/AppBar"
-import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
+import {AppBar, Toolbar, Button} from "@material-ui/core"
 import "./Menu.css";
 import {Link} from "react-router-dom";
 
@@ -20,7 +18,7 @@ function Menu() {
                         </Link>
                     </div>
                     <div className="RightMenu">
-                        <Link to="/login">
+                        <Link to="/">
                             <Button variant="contained" id="Login" color="default">Login</Button>
                         </Link>
                     </div>

@@ -1,22 +1,16 @@
 import React from "react";
-import {Button, Typography} from "@material-ui/core";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import {Button, Typography, List, Card, Grid, ListItem, ListItemText, CardContent} from "@material-ui/core";
 import "./Alternative.css"
-import CardContent from "@material-ui/core/CardContent";
-import Card from "@material-ui/core/Card";
-import Grid from "@material-ui/core/Grid";
 
 function renderApprovers(alternativeNumber) {
- return ([0, 1, 2, 3].map((value) => {
-     const labelId = `checkbox-list-label-${value}`;
-     return (
-         <ListItem key={value} role={undefined} dense button>
-             <ListItemText id={labelId} primary={formatName(`${alternativeNumber}.${value} approver`)} />
-         </ListItem>
-     );
- }));
+    return ([0, 1, 2, 3].map((value) => {
+        const labelId = `checkbox-list-label-${value}`;
+        return (
+            <ListItem key={value} role={undefined} dense button>
+                <ListItemText id={labelId} primary={formatName(`${alternativeNumber}.${value} approver`)}/>
+            </ListItem>
+        );
+    }));
 }
 
 function renderDispprovers(alternativeNumber) {
@@ -24,7 +18,7 @@ function renderDispprovers(alternativeNumber) {
         const labelId = `checkbox-list-label-${value}`;
         return (
             <ListItem key={value} role={undefined} dense button>
-                <ListItemText id={labelId} primary={formatName(`${alternativeNumber}.${value} disapprover`)} />
+                <ListItemText id={labelId} primary={formatName(`${alternativeNumber}.${value} disapprover`)}/>
             </ListItem>
         );
     }));
@@ -32,7 +26,7 @@ function renderDispprovers(alternativeNumber) {
 
 function formatName(name) {
     return (
-      `User's name: ${name}`
+        `User's name: ${name}`
     );
 }
 
@@ -45,7 +39,7 @@ function Alternative(props) {
                         <Typography variant="h5">Alternative {props.number}</Typography>
                     </div>
                     <div className="AlternativeDescription">
-                        <Typography variant="p">you know how it be, lorum ipsum dolor in da
+                        <Typography variant="p" display="block" align="left">you know how it be, lorum ipsum dolor in da
                             house. I need more text here, so I'm going to start telling you all about Arun. Arun is
                             a
                             guy

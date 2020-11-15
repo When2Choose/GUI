@@ -11,7 +11,7 @@ function ViewChoice() {
                     <Typography variant="h2">Choice</Typography>
                 </Grid>
                 <Grid item xs={9}>
-                    <Typography variant="p" id="choiceDescription" style={{width: "100%"}}>Insert a lot of text here,
+                    <Typography inline variant="p" id="choiceDescription" align="left" display="block"> Insert a lot of text here,
                         you know how it be, lorum ipsum dolor in da
                         house. I need more text here, so I'm going to start telling you all about Arun. Arun is a guy
                         who does a lot of stuff, like coding and taking classes and courses and lots of of teaching

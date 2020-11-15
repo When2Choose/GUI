@@ -43,7 +43,7 @@ function App() {
                         <Route path="/create">
                             <CreateChoice/>
                         </Route>
-                        <Route path="/login">
+                        <Route path="/">
                             <Login/>
                         </Route>
                     </Switch>
