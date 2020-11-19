@@ -11,7 +11,7 @@ import "./Login.css";
 function Login() {
     return (
         <div className="LoginContent">
-            <Grid container spacing={3} justify="center" direction="row" className="LoginGrid">
+            <Grid container spacing={3} justify="center" direction="row" className="LoginGrid" xs={12}>
                 <Grid item xs={6}>
                     <Grid container direction="column" spacing={2} className="LoginForm" justify="center">
                         <Grid item>
