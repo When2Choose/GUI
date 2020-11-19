@@ -1,19 +1,24 @@
 import React from "react";
 
-
 import {
     Switch,
     Route,
-    BrowserRouter
+    HashRouter
 } from "react-router-dom";
+import {
+    useMediaQuery,
+    createMuiTheme,
+    CssBaseline
+} from "@material-ui/core";
+import {ThemeProvider} from "@material-ui/styles";
 
 import './App.css';
 import CreateChoice from "./CreateChoice";
 import Menu from "./Menu";
 import Login from "./Login";
 import ViewChoice from "./ViewChoice";
-import {ThemeProvider} from "@material-ui/styles";
-import {useMediaQuery, createMuiTheme, CssBaseline} from "@material-ui/core";
+
+
 import CompleteChoice from "./CompleteChoice";
 
 
@@ -35,7 +40,7 @@ function App() {
         <ThemeProvider theme={theme}>
             <CssBaseline/>
             <div className="App">
-                <BrowserRouter>
+                <HashRouter>
                     <Menu/>
                     <Switch>
                         <Route path="/view">
@@ -51,7 +56,7 @@ function App() {
                             <Login/>
                         </Route>
                     </Switch>
-                </BrowserRouter>
+                </HashRouter>
             </div>
         </ThemeProvider>
     );
