@@ -1,6 +1,7 @@
 import React from "react";
 import {Typography, TextField, Button} from "@material-ui/core";
 import "./CreateChoice.css"
+import {Link} from "react-router-dom";
 
 function CreateChoice() {
     return (
@@ -15,9 +16,11 @@ function CreateChoice() {
                     <TextField id="choiceDescription" type="text"
                                label="Description" style={{width: '75%'}} multiline={true}/>
                 </div>
-                <div className="Vertical">
-                    <Button variant="contained" id="Create" color="primary">Create choice</Button>
-                </div>
+                <Link to="/view">
+                    <div className="Vertical">
+                        <Button variant="contained" id="Create" color="primary">Create choice</Button>
+                    </div>
+                </Link>
             </div>
         </div>
     );
