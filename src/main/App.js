@@ -18,6 +18,7 @@ import Menu from "./Menu";
 import Login from "./Login";
 import ViewChoice from "./ViewChoice";
 import CompleteChoice from "./CompleteChoice";
+import Administrator from "./Administrator";
 
 function App() {
     document.title = "Choice App";
@@ -40,6 +41,9 @@ function App() {
                 <HashRouter>
                     <Menu/>
                     <Switch>
+                        <Route path="/administrator">
+                          <Administrator/>
+                        </Route>
                         <Route path="/view">
                             <ViewChoice/>
                         </Route>
