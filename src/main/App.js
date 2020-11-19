@@ -17,10 +17,7 @@ import CreateChoice from "./CreateChoice";
 import Menu from "./Menu";
 import Login from "./Login";
 import ViewChoice from "./ViewChoice";
-
-
 import CompleteChoice from "./CompleteChoice";
-
 
 function App() {
     document.title = "Choice App";
