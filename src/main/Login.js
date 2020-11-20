@@ -11,7 +11,7 @@ import "./Login.css";
 function Login() {
     return (
         <div className="LoginContent">
-            <Grid container spacing={3} justify="center" direction="row" className="LoginGrid" xs={12}>
+            <Grid container spacing={3} justify="center" direction="row" xs={12}>
                 <Grid item xs={6}>
                     <Grid container direction="column" spacing={2} className="LoginForm" justify="center">
                         <Grid item>
@@ -27,9 +27,8 @@ function Login() {
                                                     <TextField required variant="outlined" id="UserName" placeholder="Name" className="Input"/>
                                                 </Grid>
                                                 <Grid item>
-                                                    <TextField variant="outlined" id="UserPassword" type="password"
-                                                           placeholder="Password (Optional)"
-                                                           className="Input"/>
+                                                    <TextField required variant="outlined" id="UserPassword" type="password"
+                                                           placeholder="Password" className="Input"/>
                                                 </Grid>
                                                 <Grid item>
                                                     <TextField required variant="outlined" id="ChoiceID" type="number"

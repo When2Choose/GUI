@@ -2,19 +2,13 @@ div.LoginContent {
     padding-top: 75px;
     margin: 5px;
     padding-left: 20px;
+
 }
 
 div.LoginGrid {
     justify-content: center;
 }
 
-div.Login {
-    display: block;
-    alignment: center;
-    clear: both;
-    padding-top: 15px;
-    margin: 5px;
-}
 
 .LoginInputs {
     height: 250px;

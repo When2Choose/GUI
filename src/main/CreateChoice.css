@@ -1,13 +1,22 @@
-div.CreateChoiceContent {
+div.CreateChoice {
     display: block;
     vertical-align: middle;
-    padding-top: 75px;
+    padding: 1%;
 }
 
-div.Vertical {
-    padding: 10px;
-}
 
 div.CreateButton {
     padding-top: 1%;
+}
+
+.Paper {
+    padding:25px;
+}
+
+.TextEntry {
+    width: 100%;
+}
+
+.CreateChoiceGrid {
+    padding:4%;
 }
