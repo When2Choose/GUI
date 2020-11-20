@@ -28,7 +28,7 @@ function Login() {
                                                 </Grid>
                                                 <Grid item>
                                                     <TextField required variant="outlined" id="UserPassword" type="password"
-                                                           placeholder="Password" className="Input"/>
+                                                           placeholder="Password (Optional)" className="Input"/>
                                                 </Grid>
                                                 <Grid item>
                                                     <TextField required variant="outlined" id="ChoiceID" type="number"
@@ -63,7 +63,7 @@ function Login() {
                                                 </Grid>
                                                 <Grid item>
                                                     <TextField required variant="outlined" id="AdminPassword" type="password"
-                                                           placeholder="Password (Optional)"
+                                                           placeholder="Password"
                                                            className="Input"/>
                                                 </Grid>
                                             </Grid>
