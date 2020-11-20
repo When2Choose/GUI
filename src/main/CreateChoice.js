@@ -15,7 +15,7 @@ function CreateChoice() {
                             </Grid>
                             <Grid item>
                                 <form className="CreateChoiceForm">
-                                    <Grid container direction="column" spacing={3} justify="center" xs={12}>
+                                    <Grid container direction="column" spacing={3} justify="center" xs={12} style={{paddingLeft: "1%", paddingRight: "1%"}}>
                                         <Grid item>
                                             <TextField required variant="outlined" id="choiceAllowedMembersNumber"
                                                        type="number"
