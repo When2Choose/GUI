@@ -1,36 +1,84 @@
 import React from "react";
-import {TextField, Button, Typography} from "@material-ui/core";
+import {
+    Button,
+    Typography,
+    Grid,
+    Paper,
+    TextField
+} from "@material-ui/core";
 import "./Login.css";
 
 function Login() {
     return (
         <div className="LoginContent">
-            <div className="LeftLoginContent">
-                <div className="LoginList">
-                    <Typography variant="h4"> User </Typography>
-                    <TextField id="UserName" type="text"
-                               label="Name" style={{width: '75%'}}/>
-                    <TextField id="UserPassword" type="text"
-                               label="Password (Optional)" style={{width: '75%'}}/>
-                    <TextField id="ChoiceID" type="number"
-                               label="Choice ID" style={{width: '75%'}}/>
-                    <div className="Login">
-                        <Button variant="contained" id="Login" color="primary" size="large">Login User</Button>
-                    </div>
-                </div>
-            </div>
-            <div className="RightLoginContent">
-                <div className="LoginList">
-                    <Typography variant="h4"> Admin </Typography>
-                    <TextField id="AdminName" type="text"
-                               label="Name" style={{width: '75%'}}/>
-                    <TextField id="AdminPassword" type="text"
-                               label="Password (Optional)" style={{width: '75%'}}/>
-                    <div className="Login">
-                        <Button variant="contained" id="Login" color="primary" size="large">Login aDMIN</Button>
-                    </div>
-                </div>
-            </div>
+            <Grid container spacing={3} justify="center" direction="row" xs={12}>
+                <Grid item xs={6}>
+                    <Grid container direction="column" spacing={2} className="LoginForm" justify="center">
+                        <Grid item>
+                            <Paper variant="elevation" elevation={2} className="Paper">
+                                <form className="LoginUser">
+                                    <Grid container direction="column" spacing={2}>
+                                        <Grid item>
+                                            <Typography variant="h4"> User </Typography>
+                                        </Grid>
+                                        <Grid item className="LoginInputs">
+                                            <Grid container direction="column" spacing={2}>
+                                                <Grid item>
+                                                    <TextField required variant="outlined" id="UserName" placeholder="Name" className="Input"/>
+                                                </Grid>
+                                                <Grid item>
+                                                    <TextField required variant="outlined" id="UserPassword" type="password"
+                                                           placeholder="Password (Optional)" className="Input"/>
+                                                </Grid>
+                                                <Grid item>
+                                                    <TextField required variant="outlined" id="ChoiceID" type="number"
+                                                           placeholder="Choice ID" className="Input"/>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid item>
+                                            <Button variant="contained" id="Login" color="primary" size="large"
+                                                    type="submit">Login User</Button>
+                                        </Grid>
+                                    </Grid>
+                                </form>
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item xs={6}>
+                    <Grid container direction="column" spacing={2} className="LoginForm" justify="center">
+                        <Grid item>
+                            <Paper variant="elevation" elevation={2} className="Paper">
+                                <form className="LoginAdmin">
+                                    <Grid container direction="column" spacing={2}>
+                                        <Grid item>
+                                            <Typography variant="h4"> Admin </Typography>
+                                        </Grid>
+                                        <Grid item className="LoginInputs">
+                                            <Grid container direction="column" spacing={2}>
+                                                <Grid item>
+                                                    <TextField required variant="outlined" id="AdminName" placeholder="Name"
+                                                           className="Input"/>
+                                                </Grid>
+                                                <Grid item>
+                                                    <TextField required variant="outlined" id="AdminPassword" type="password"
+                                                           placeholder="Password"
+                                                           className="Input"/>
+                                                </Grid>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid item>
+                                            <Button variant="contained" id="Login" color="primary" size="large"
+                                                    type="submit">Login Admin</Button>
+                                        </Grid>
+                                    </Grid>
+                                </form>
+                            </Paper>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
         </div>
     );
 }
