@@ -4,7 +4,7 @@ div.AdministratorContent {
 }
 
 div.LeftAdministratorContent {
-  padding-top: 30px;
+  padding-top: 5px;
   padding-left: 10px;
   float: left;
   width: 50%;
@@ -15,6 +15,8 @@ div.RightAdministratorContent {
   padding-top: 5px;
   float: right;
   width: 50%;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 
 div.GenerateReport {
@@ -22,23 +24,10 @@ div.GenerateReport {
 }
 
 div.DeleteChoices {
+  padding-top: 2%;
   margin: 5%;
 }
 
 div.DeleteChoicesButton {
   padding: 3%;
-}
-
-ul {
-  list-style-type: none;
-}
-
-li {
-  padding: 4px;
-  border: 1px;
-  border-style: solid;
-}
-
-hr {
-  width: 75%;
 }
