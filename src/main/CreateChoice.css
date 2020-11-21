@@ -21,3 +21,7 @@ div.CreateButton {
     padding-left: 1%;
     padding-right: 1%;
 }
+
+#URIRevealer {
+    visibility: hidden;
+}

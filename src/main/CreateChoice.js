@@ -1,22 +1,20 @@
 import React from "react";
 import {Typography, TextField, Button, Grid, CardContent, Card} from "@material-ui/core";
 import "./CreateChoice.css"
-import ViewChoice from "./ViewChoice";
-import {HashRouter, Route} from "react-router-dom";
-
 
 function CreateChoice() {
-    let newProps = {};
 
     const handleCreate = () => {
         const xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-        const postTo = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/grant/createChoice";
+        const postTo = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/G2Iteration/createChoice";
         xmlhttp.open("POST", postTo, true);
         xmlhttp.responseType = "json";
         xmlhttp.onloadend = function () {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                 console.log("Response: " + JSON.stringify(xmlhttp.response));
-                window.location.href = '/index.html#/view';
+                let ID = JSON.parse(xmlhttp.response.response)["ID"];
+                document.getElementById("choiceID").innerText = ID;
+                document.getElementById("URIRevealer").style.visibility = "visible";
             }
         };
 
@@ -79,6 +77,10 @@ function CreateChoice() {
                             </Grid>
                         </Grid>
                     </form>
+                    <div id="URIRevealer">
+                        <Typography variant="body1">Copy Choice ID for later:</Typography>
+                        <Typography variant="h4" id="choiceID">WHY CAN YOU SEE THIS</Typography>
+                    </div>
                 </CardContent>
             </Card>
         </div>

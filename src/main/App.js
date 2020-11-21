@@ -50,7 +50,7 @@ function App() {
                         <Route path="/create">
                             <CreateChoice/>
                         </Route>
-                        <Route path="/complete">
+                        <Route path="/complete/:id">
                             <CompleteChoice/>
                         </Route>
                         <Route path="/">
