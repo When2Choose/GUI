@@ -2,17 +2,20 @@ import React from "react";
 import {Button, Typography, Grid} from "@material-ui/core";
 import Alternative from "./Alternatives";
 import "./ViewChoice.css";
-import {Link} from "react-router-dom";
+import {
+    useParams, Link
+} from "react-router-dom";
 
-function ViewChoice() {
+function ViewChoice(props) {
+    let {id} = useParams();
     return (
         <div className="ViewChoice">
             <Grid container spacing={3} style={{paddingLeft: "1%", paddingRight: "1%"}}>
                 <Grid item xs={12}>
-                    <Typography variant="h2">Choice</Typography>
+                    <Typography variant="h2">Choice {id}</Typography>
                 </Grid>
                 <Grid item xs={9}>
-                    <Typography inline variant="p" id="choiceDescription" align="left" display="block"> Insert a lot of
+                    <Typography variant="body1" id="choiceDescription" align="left" display="block"> Insert a lot of
                         text here,
                         you know how it be, lorum ipsum dolor in da
                         house. I need more text here, so I'm going to start telling you all about Arun. Arun is a guy

@@ -44,7 +44,7 @@ function App() {
                         <Route path="/administrator">
                           <Administrator/>
                         </Route>
-                        <Route path="/view">
+                        <Route path="/view/:id">
                             <ViewChoice/>
                         </Route>
                         <Route path="/create">

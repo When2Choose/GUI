@@ -6,8 +6,7 @@ import {
     RadioGroup,
     Radio,
     Button,
-    Grid,
-    Paper, Typography, CardContent, Card
+    Grid,Typography, CardContent, Card
 } from '@material-ui/core';
 import "./CompleteChoice.css"
 
@@ -43,7 +42,7 @@ function CompleteChoice() {
                     <FormLabel component="legend" style={{paddingBottom: "10px"}}>Choose the best
                         alternative</FormLabel>
                     <RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleChange}>
-                        <Grid container justify="center" direction="row" spacing={3} xs={12}
+                        <Grid container justify="center" direction="row" spacing={3}
                               className="CompleteGrid">
                             <Grid item>
                                 <Card variant="outlined" className="Card">
