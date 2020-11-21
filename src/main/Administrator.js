@@ -1,5 +1,5 @@
 import React from "react";
-import {Typography, TextField, Button, Grid, Paper, CardContent, Card, Table, TableRow, TableCell, TableBody} from "@material-ui/core";
+import {Typography, TextField, Button, Grid, CardContent, Card} from "@material-ui/core";
 import "./Administrator.css";
 
 function Administrator() {
