@@ -26,7 +26,7 @@ function Login() {
             const data = {
                 name: document.getElementById("UserName").value,
                 password: document.getElementById("UserPassword").value,
-                choiceID: document.getElementById("ChoiceID").value
+                choiceId: document.getElementById("ChoiceID").value
             }
             console.log("local: " + JSON.stringify(data));
             xmlhttp.send(JSON.stringify(data));
