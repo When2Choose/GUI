@@ -9,7 +9,27 @@ import {
 
 class ViewChoice extends React.Component{
     componentDidMount() {
-        console.log("mount");
+        const id = this.props.match.params.id;
+        console.log(id);
+        var xmlhttp = new XMLHttpRequest();
+        const postTo = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice";
+        xmlhttp.open("POST", postTo, true);
+        xmlhttp.responseType = "json";
+        xmlhttp.onloadend = function () {
+            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                console.log("Response: " + JSON.stringify(xmlhttp.response));
+                let description = JSON.parse(xmlhttp.response.response)["Description"];
+                console.log(description);
+                document.getElementById("choiceDescription").innerText = description;
+            }
+        };
+
+        const data = {
+          uuidString: id
+        }
+
+        xmlhttp.send(JSON.stringify(data));
+        console.log("local: " + JSON.stringify(data));
     }
 
     render() {
