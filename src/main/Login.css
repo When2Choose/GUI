@@ -1,27 +1,14 @@
 div.LoginContent {
     padding-top: 75px;
     margin: 5px;
-    padding-left: 20px;
-
+    padding-right: 1%;
+    padding-left: 1%;
 }
 
 div.LoginGrid {
     justify-content: center;
 }
 
-
-.LoginInputs {
-    height: 250px;
-    margin: 5px;
-}
-
-.Paper {
-    padding: 50px;
-}
-
-.LoginForm {
-    float: right;
-}
 
 .Input {
     width: 100%;

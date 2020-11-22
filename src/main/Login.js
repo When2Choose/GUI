@@ -3,77 +3,66 @@ import {
     Button,
     Typography,
     Grid,
-    Paper,
-    TextField
+    TextField, CardContent, Card
 } from "@material-ui/core";
 import "./Login.css";
 
 function Login() {
+    const handleUserLogin = () => {
+        let name = document.getElementById("UserName").checkValidity();
+        let choiceID = document.getElementById("ChoiceID").checkValidity();
+        if (name && choiceID) {
+            var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+            const postTo = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/loginRequest/userLogin";
+            xmlhttp.open("POST", postTo, true);
+            xmlhttp.responseType = "json";
+            xmlhttp.onloadend = function () {
+                console.log("Response: " + JSON.stringify(xmlhttp.response));
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+
+                }
+            };
+
+            const data = {
+                name: document.getElementById("UserName").value,
+                password: document.getElementById("UserPassword").value,
+                choiceID: document.getElementById("ChoiceID").value
+            }
+            console.log("local: " + JSON.stringify(data));
+            xmlhttp.send(JSON.stringify(data));
+        }
+    };
+
     return (
         <div className="LoginContent">
-            <Grid container spacing={3} justify="center" direction="row">
-                <Grid item xs={6}>
-                    <Paper variant="elevation" elevation={2} className="Paper">
-                        <form className="LoginUser">
-                            <Grid container direction="column" spacing={2}>
-                                <Grid item>
-                                    <Typography variant="h4"> User </Typography>
-                                </Grid>
-                                <Grid item className="LoginInputs">
-                                    <Grid container direction="column" spacing={2}>
-                                        <Grid item>
-                                            <TextField required variant="outlined" id="UserName" placeholder="Name"
-                                                       className="Input"/>
-                                        </Grid>
-                                        <Grid item>
-                                            <TextField required variant="outlined" id="UserPassword" type="password"
-                                                       placeholder="Password (Optional)" className="Input"/>
-                                        </Grid>
-                                        <Grid item>
-                                            <TextField required variant="outlined" id="ChoiceID" type="number"
-                                                       placeholder="Choice ID" className="Input"/>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                                <Grid item>
-                                    <Button variant="contained" id="Login" color="primary" size="large"
-                                            type="submit">Login User</Button>
-                                </Grid>
+            <Typography variant="h2" style={{paddingBottom: "1%"}}> User Login </Typography>
+            <Card variant="outlined">
+                <CardContent>
+                    <form className="LoginUser" onSubmit={() => {
+                        return false;
+                    }}>
+                        <Grid container direction="column" spacing={2} style={{padding: "1%"}}>
+                            <Grid item>
+                                <TextField required variant="outlined" id="UserName" placeholder="Name*"
+                                           className="Input"/>
                             </Grid>
-                        </form>
-                    </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                    <Paper variant="elevation" elevation={2} className="Paper">
-                        <form className="LoginAdmin">
-                            <Grid container direction="column" spacing={2}>
-                                <Grid item>
-                                    <Typography variant="h4"> Admin </Typography>
-                                </Grid>
-                                <Grid item className="LoginInputs">
-                                    <Grid container direction="column" spacing={2}>
-                                        <Grid item>
-                                            <TextField required variant="outlined" id="AdminName"
-                                                       placeholder="Name"
-                                                       className="Input"/>
-                                        </Grid>
-                                        <Grid item>
-                                            <TextField required variant="outlined" id="AdminPassword"
-                                                       type="password"
-                                                       placeholder="Password"
-                                                       className="Input"/>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                                <Grid item>
-                                    <Button variant="contained" id="Login" color="primary" size="large"
-                                            type="submit">Login Admin</Button>
-                                </Grid>
+                            <Grid item>
+                                <TextField variant="outlined" id="UserPassword" type="password"
+                                           placeholder="Password (Optional)" className="Input"/>
                             </Grid>
-                        </form>
-                    </Paper>
-                </Grid>
-            </Grid>
+                            <Grid item>
+                                <TextField required variant="outlined" id="ChoiceID" type="text"
+                                           placeholder="Choice ID*"
+                                           className="Input"/>
+                            </Grid>
+                            <Grid item>
+                                <Button variant="contained" id="Login" color="primary" size="large"
+                                        onClick={handleUserLogin} type="submit">Login User</Button>
+                            </Grid>
+                        </Grid>
+                    </form>
+                </CardContent>
+            </Card>
         </div>
     );
 }

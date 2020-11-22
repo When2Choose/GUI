@@ -12,7 +12,7 @@ function ViewChoice(props) {
         <div className="ViewChoice">
             <Grid container spacing={3} style={{paddingLeft: "1%", paddingRight: "1%"}}>
                 <Grid item xs={12}>
-                    <Typography variant="h2">Choice {id}</Typography>
+                    <Typography variant="h2">Choice {id} </Typography>
                 </Grid>
                 <Grid item xs={9}>
                     <Typography variant="body1" id="choiceDescription" align="left" display="block"> Insert a lot of
