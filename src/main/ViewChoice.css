@@ -1,5 +1,7 @@
 div.ViewChoice {
     padding-top: 75px;
+    padding-left: 1%;
+    padding-right: 1%;
 }
 div.ChoiceDescriptionContent {
     padding-top: 5px;

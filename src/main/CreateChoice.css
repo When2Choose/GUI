@@ -2,6 +2,8 @@ div.CreateChoice {
     display: block;
     vertical-align: middle;
     padding-top: 75px;
+    padding-right: 1%;
+    padding-left: 1%;
 }
 
 
@@ -9,9 +11,7 @@ div.CreateButton {
     padding-top: 1%;
 }
 
-.Paper {
-    padding:25px;
-}
+
 
 .TextEntry {
     width: 100%;
