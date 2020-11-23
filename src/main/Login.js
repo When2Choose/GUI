@@ -19,7 +19,9 @@ function Login() {
             xmlhttp.onloadend = function () {
                 console.log("Response: " + JSON.stringify(xmlhttp.response));
                 if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-
+                    choiceID = document.getElementById("ChoiceID").value;
+                    localStorage.setItem("user", document.getElementById("UserName").value);
+                    window.location.href="#/view/"+choiceID;
                 }
             };
 

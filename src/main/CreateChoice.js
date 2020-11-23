@@ -15,8 +15,8 @@ function CreateChoice() {
             xmlhttp.open("POST", postTo, true);
             xmlhttp.responseType = "json";
             xmlhttp.onloadend = function () {
-                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                    console.log("Response: " + JSON.stringify(xmlhttp.response));
+                console.log("Response: " + JSON.stringify(xmlhttp.response));
+                if (this.readyState === XMLHttpRequest.DONE && this.response.statusCode === 200) {
                     let ID = JSON.parse(xmlhttp.response.response)["ID"];
                     console.log(ID);
                     document.getElementById("choiceID").innerText = ID;
