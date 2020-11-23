@@ -7,25 +7,29 @@ import {
     withRouter
 } from "react-router-dom";
 
-class ViewChoice extends React.Component{
+class ViewChoice extends React.Component {
+
     componentDidMount() {
-        const id = this.props.match.params.id;
-        console.log(id);
+        const id = localStorage.getItem("choiceID");
         var xmlhttp = new XMLHttpRequest();
         const postTo = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice";
         xmlhttp.open("POST", postTo, true);
         xmlhttp.responseType = "json";
         xmlhttp.onloadend = function () {
+            console.log("Response: " + JSON.stringify(xmlhttp.response));
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                console.log("Response: " + JSON.stringify(xmlhttp.response));
+                document.getElementById("ViewChoiceContent").style.visibility = "visible";
                 let description = JSON.parse(xmlhttp.response.response)["Description"];
-                console.log(description);
                 document.getElementById("choiceDescription").innerText = description;
+                let alternatives = JSON.parse(xmlhttp.response.response)["Alternatives"];
+                for (let i = 0; i < 5; i++) {
+                    document.getElementById("details" + i).innerText = alternatives[i]["description"];
+                }
             }
         };
 
         const data = {
-          uuidString: id
+            uuidString: id
         }
 
         xmlhttp.send(JSON.stringify(data));
@@ -33,12 +37,12 @@ class ViewChoice extends React.Component{
     }
 
     render() {
-        const id = this.props.match.params.id;
+        const id = localStorage.getItem("choiceID");
         return (
-            <div className="ViewChoice">
+            <div className="ViewChoice" id="ViewChoiceContent">
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
-                        <Typography variant="h2">Choice {id} </Typography>
+                        <Typography variant="h2">Choice {id}</Typography>
                     </Grid>
                     <Grid item xs={9}>
                         <Typography variant="body1" id="choiceDescription" align="left" display="block"> Insert a lot of
@@ -57,20 +61,20 @@ class ViewChoice extends React.Component{
                     </Grid>
 
                     <Grid item xs={12} id="alt0">
-                        <Alternative number="0"/>
+                        <Alternative number="0" id="alternative0"/>
                     </Grid>
 
                     <Grid item xs={12} id="alt1">
-                        <Alternative number="1"/>
+                        <Alternative number="1" id="alternative1"/>
                     </Grid>
                     <Grid item xs={12} id="alt2">
-                        <Alternative number="2"/>
+                        <Alternative number="2" id="alternative2"/>
                     </Grid>
                     <Grid item xs={12} id="alt3">
-                        <Alternative number="3"/>
+                        <Alternative number="3" id="alternative3"/>
                     </Grid>
                     <Grid item xs={12} id="alt4">
-                        <Alternative number="4"/>
+                        <Alternative number="4" id="alternative4"/>
                     </Grid>
                 </Grid>
             </div>

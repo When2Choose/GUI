@@ -21,7 +21,8 @@ function Login() {
                 if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                     choiceID = document.getElementById("ChoiceID").value;
                     localStorage.setItem("user", document.getElementById("UserName").value);
-                    window.location.href="#/view/"+choiceID;
+                    localStorage.setItem("choiceID", choiceID);
+                    window.location.href="#/view/";
                 }
             };
 
@@ -40,8 +41,8 @@ function Login() {
             <Typography variant="h2" style={{paddingBottom: "1%"}}> User Login </Typography>
             <Card variant="outlined">
                 <CardContent>
-                    <form className="LoginUser" onSubmit={() => {
-                        return false;
+                    <form className="LoginUser" onSubmit={(event) => {
+                        event.preventDefault()
                     }}>
                         <Grid container direction="column" spacing={2} style={{padding: "1%"}}>
                             <Grid item>

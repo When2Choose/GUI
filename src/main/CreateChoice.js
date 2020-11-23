@@ -44,7 +44,9 @@ function CreateChoice() {
             <Typography variant="h2" style={{paddingBottom: "1%"}}> Create new choice </Typography>
             <Card variant="outlined" style={{paddingBottom: 10}}>
                 <CardContent>
-                    <form className="CreateChoiceForm" onSubmit={() => {return false;}}>
+                    <form className="CreateChoiceForm" onSubmit={(event) => {
+                        event.preventDefault()
+                    }}>
                         <Grid container direction="column" spacing={3} justify="center"
                               style={{padding: "1%"}}>
                             <Grid item>
@@ -80,8 +82,7 @@ function CreateChoice() {
                             </Grid>
                             <Grid item>
                                 <Button variant="contained" id="Create" color="primary" type="submit"
-                                        onClick={handleCreate}>Create
-                                    choice</Button>
+                                        onClick={handleCreate}>Create choice</Button>
                             </Grid>
                         </Grid>
                     </form>

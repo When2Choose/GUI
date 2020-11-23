@@ -44,13 +44,13 @@ function App() {
                         <Route path="/administrator">
                           <Administrator/>
                         </Route>
-                        <Route path="/view/:id">
+                        <Route path="/view">
                             <ViewChoice/>
                         </Route>
                         <Route path="/create">
                             <CreateChoice/>
                         </Route>
-                        <Route path="/complete/:id">
+                        <Route path="/complete">
                             <CompleteChoice/>
                         </Route>
                         <Route path="/">

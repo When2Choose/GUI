@@ -39,7 +39,7 @@ function Alternative(props) {
                         <Typography variant="h5">Alternative {props.number}</Typography>
                     </div>
                     <div className="AlternativeDescription">
-                        <Typography variant="body1" display="block" align="left">you know how it be, lorum ipsum dolor in da
+                        <Typography variant="body1" display="block" align="left" id={"details"+props.number}>you know how it be, lorum ipsum dolor in da
                             house. I need more text here, so I'm going to start telling you all about Arun. Arun is
                             a
                             guy
