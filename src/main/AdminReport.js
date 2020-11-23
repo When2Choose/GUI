@@ -1,5 +1,5 @@
 import React from "react";
-import {Typography, TextField, Button, Grid, CardContent, Card, Table, TableRow, TableCell, TableBody, TableHead} from "@material-ui/core";
+import {CardContent, Card, Table, TableRow, TableCell, TableBody, TableHead} from "@material-ui/core";
 import "./AdminReport.css";
 
 function createData(choice, date, complete) {
@@ -15,7 +15,7 @@ const rows = [
 
 function AdminReport() {
   return (
-    <div class="ReportContent">
+    <div className="ReportContent">
       <Card>
         <CardContent>
           <Table>

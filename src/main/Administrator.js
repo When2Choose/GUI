@@ -1,6 +1,19 @@
 import React from "react";
-import {Typography, TextField, Button, Grid, CardContent, Card} from "@material-ui/core";
+import {Typography, TextField, Button, CardContent, Card, Table, TableRow, TableCell, TableBody, TableHead} from "@material-ui/core";
 import "./Administrator.css";
+
+function createData(choice) {
+  return { choice };
+}
+
+const rows = [
+  createData('Choice 1'),
+  createData('Choice 2'),
+  createData('Choice 3'),
+  createData('Choice 4'),
+  createData('Choice 5'),
+  createData('Choice 6'),
+];
 
 function Administrator() {
   return(
@@ -8,61 +21,22 @@ function Administrator() {
       <div className="LeftAdministratorContent">
         <Card>
           <CardContent>
-            <TextField
-              className="choicesListItem"
-              id="choice1"
-              defaultValue="Choice 1"
-              style={{
-                padding: "2%",
-                width: "100%"
-              }}
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="outlined"
-            />
-            <br/>
-            <TextField
-              className="choicesListItem"
-              id="choice2"
-              defaultValue="Choice 2"
-              style={{
-                padding: "2%",
-                width: "100%"
-              }}
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="outlined"
-            />
-            <br/>
-            <TextField
-              className="choicesListItem"
-              id="choice3"
-              defaultValue="Choice 3"
-              style={{
-                padding: "2%",
-                width: "100%"
-              }}
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="outlined"
-            />
-            <br/>
-            <TextField
-              className="choicesListItem"
-              id="choice4"
-              defaultValue="Choice 4"
-              style={{
-                padding: "2%",
-                width: "100%"
-              }}
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="outlined"
-            />
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell style={{fontWeight: "bold",}}>Choices</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <TableRow key={row.choice}>
+                    <TableCell component="th" scope="row">
+                      {row.choice}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </CardContent>
         </Card>
       </div>
@@ -74,9 +48,9 @@ function Administrator() {
             </div>
             <hr/>
             <div className="DeleteChoices">
-              <Typography variant="p">Delete all choices more than </Typography>
+              <Typography variant="body1">Delete all choices more than </Typography>
               <TextField id="NumChoiceDelete" type="number" style={{width: '6%'}} />
-              <Typography variant="p"> days old.</Typography>
+              <Typography variant="body1"> days old.</Typography>
               <div className="DeleteChoicesButton">
                 <Button variant="contained" id="GenerateReport" color="secondary" size="large">Delete Choices</Button>
               </div>
