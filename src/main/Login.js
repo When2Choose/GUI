@@ -3,7 +3,9 @@ import {
     Button,
     Typography,
     Grid,
-    TextField, CardContent, Card
+    TextField,
+    CardContent,
+    Card
 } from "@material-ui/core";
 import "./Login.css";
 
@@ -18,11 +20,13 @@ function Login() {
             xmlhttp.responseType = "json";
             xmlhttp.onloadend = function () {
                 console.log("Response: " + JSON.stringify(xmlhttp.response));
-                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                if (this.readyState === XMLHttpRequest.DONE && this.response.statusCode === 200) {
                     choiceID = document.getElementById("ChoiceID").value;
                     localStorage.setItem("user", document.getElementById("UserName").value);
                     localStorage.setItem("choiceID", choiceID);
                     window.location.href="#/view/";
+                } else if (this.response.statusCode === 400) {
+                    alert("ERROR: "+this.response.response);
                 }
             };
 
