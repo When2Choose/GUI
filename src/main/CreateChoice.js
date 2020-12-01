@@ -7,7 +7,7 @@ function CreateChoice() {
     const handleCreate = () => {
         let nonZeroMembers = document.getElementById("memberCount").value > 0;
         let validMembers = document.getElementById("memberCount").checkValidity();
-        let validDescription = document.getElementById("choiceDescription").checkValidity();
+        let validDescription = document.getElementById("descriptionChoice").checkValidity();
         let validAlt0 = document.getElementById("alternative0").checkValidity();
         let validAlt1 = document.getElementById("alternative1").checkValidity();
         if (nonZeroMembers && validMembers && validDescription && validAlt0 && validAlt1) {
@@ -27,7 +27,7 @@ function CreateChoice() {
 
             const data = {
                 memberCount: document.getElementById("memberCount").value,
-                description: document.getElementById("choiceDescription").value,
+                description: document.getElementById("descriptionChoice").value,
                 alternatives: [
                     document.getElementById("alternative0").value,
                     document.getElementById("alternative1").value,
@@ -55,11 +55,10 @@ function CreateChoice() {
                                            type="number" label="Number of group members"
                                            style={{width: '20%', minWidth: "250px"}}/>
                             </Grid>
+
                             <Grid item>
-                                <TextField required variant="outlined" id="choiceDescription" type="text"
-                                           label="Description of choice" className="TextEntry"
-                                           style={{paddingBottom: "1%"}}
-                                           multiline={true}/>
+                                <TextField required variant="outlined" id="descriptionChoice" type="text"
+                                           label="Description of choice" className="TextEntry" multiline={true}/>
                             </Grid>
                             <Grid item>
                                 <TextField required variant="outlined" id="alternative0" type="text"

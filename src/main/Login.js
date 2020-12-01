@@ -22,8 +22,8 @@ function Login() {
                 console.log("Response: " + JSON.stringify(xmlhttp.response));
                 if (this.readyState === XMLHttpRequest.DONE && this.response.statusCode === 200) {
                     choiceID = document.getElementById("ChoiceID").value;
-                    localStorage.setItem("user", document.getElementById("UserName").value);
-                    localStorage.setItem("choiceID", choiceID);
+                    localStorage.setItem("user", JSON.parse(xmlhttp.response.response)["name"]);
+                    localStorage.setItem("choiceID", JSON.parse(xmlhttp.response.response)["ID"]);
                     window.location.href="#/view/";
                 } else if (this.response.statusCode === 400) {
                     alert("ERROR: "+this.response.response);

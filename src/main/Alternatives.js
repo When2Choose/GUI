@@ -5,19 +5,14 @@ import {withRouter} from "react-router-dom";
 
 class Alternatives extends React.Component {
 
-    constructor() {
-        super();
-        this.state = {
-            name: "React",
-            approvers: [],
-            disapprovers: [],
-            index: -1
-        }
+    constructor(props) {
+        super(props);
+        this.handleApprove = this.handleApprove.bind(this);
+        this.handleDisapprove = this.handleDisapprove.bind(this);
+        this.post = this.post.bind(this);
     }
 
-
-    renderApprovers() {
-        const {approvers} = this.state;
+    renderApprovers(approvers) {
         return (approvers.map((value) => {
             const labelId = `checkbox-list-label-${value}`;
             return (
@@ -28,8 +23,7 @@ class Alternatives extends React.Component {
         }));
     }
 
-    renderDisapprovers() {
-        const {disapprovers} = this.state;
+    renderDisapprovers(disapprovers) {
         return (disapprovers.map((value) => {
             const labelId = `checkbox-list-label-${value}`;
             return (
@@ -41,32 +35,69 @@ class Alternatives extends React.Component {
     }
 
     handleApprove() {
+        const name = localStorage.getItem("user");
+        if (this.props.disapprovers.includes(name)) {
+            this.removeDisapprove(false);
+        }
+        if (this.props.approvers.includes(name)){
+            this.removeApprove(true);
+        } else {
+            this.approve(true);
+        }
+    }
+
+    handleDisapprove() {
+        const name = localStorage.getItem("user");
+        if (this.props.approvers.includes(name)){
+            this.removeApprove(false);
+        }
+        if (this.props.disapprovers.includes(name)) {
+            this.removeDisapprove(true);
+        } else {
+            this.disapprove(true);
+        }
+
+    }
+
+    approve(refresh) {
+        const approve = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice/approveAlternative";
+        this.post(approve, refresh);
+    }
+
+    disapprove(refresh) {
+        const disapprove = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice/disapproveAlternative";
+        this.post(disapprove, refresh);
+    }
+
+    removeApprove(refresh) {
+        const remove = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice/removeApprove";
+        this.post(remove, refresh);
+    }
+
+    removeDisapprove(refresh) {
+        const remove = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice/removeDisapprove";
+        this.post(remove, refresh);
+    }
+
+    post(api_url, refresh) {
         let xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
-        const postTo = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice/%7BchoiceId%7D/%7BalternativeIndex%7D/approveAlternative";
-        xmlhttp.open("POST", postTo, true);
+        xmlhttp.open("POST", api_url, true);
         xmlhttp.responseType = "json";
         xmlhttp.onloadend = () => {
             console.log("Response: " + JSON.stringify(xmlhttp.response));
-            if (this.readyState === XMLHttpRequest.DONE && this.response.statusCode === 200) {
-                //TODO: refresh alternative
-            } else if (this.response.statusCode === 400) {
-                alert("ERROR: " + this.response.response);
+            if (xmlhttp.response.statusCode === 400) {
+                alert("ERROR: " + xmlhttp.response.response);
+            } else if (refresh) {
+                window.location.reload(false);
             }
         }
         const data = {
-            user: localStorage.getItem("name"),
-            alternative: this.state.index,
+            user: localStorage.getItem("user"),
+            alternative: parseInt(this.props.number),
             choiceId: localStorage.getItem("choiceID")
         }
         console.log("local: " + JSON.stringify(data));
         xmlhttp.send(JSON.stringify(data));
-    }
-
-    componentDidMount() {
-        this.setState({approvers: this.props.approvers});
-        this.setState({disapprovers: this.props.disapprovers});
-        this.setState({index: this.props.number})
-        this.forceUpdate();
     }
 
     render() {
@@ -86,11 +117,12 @@ class Alternatives extends React.Component {
                                 <Grid container spacing={3} style={{paddingLeft: "1%", paddingRight: "1%"}}>
                                     <Grid item xs={6}>
                                         <Button variant="contained" id="Approve" color="primary"
-                                                style={{float: "right"}}>Approve</Button>
+                                                style={{float: "right"}} onClick={this.handleApprove}>Approve</Button>
                                     </Grid>
                                     <Grid item xs={6}>
                                         <Button variant="contained" id="Disapprove" color="primary"
-                                                style={{float: "left"}}>Disapprove</Button>
+                                                style={{float: "left"}}
+                                                onClick={this.handleDisapprove}>Disapprove</Button>
                                     </Grid>
                                     <Grid item xs={6}>
                                         <Card variant="outlined">
@@ -98,12 +130,12 @@ class Alternatives extends React.Component {
                                                 <Grid container spacing={3}>
                                                     <Grid item>
                                                         <Typography variant="h4">
-                                                            Approvers: {this.state.approvers.length}
+                                                            Approvers: {this.props.approvers.length}
                                                         </Typography>
                                                     </Grid>
                                                     <Grid item>
                                                         <List className="approvers">
-                                                            {this.renderApprovers()}
+                                                            {this.renderApprovers(this.props.approvers)}
                                                         </List>
                                                     </Grid>
                                                 </Grid>
@@ -116,12 +148,12 @@ class Alternatives extends React.Component {
                                                 <Grid container spacing={3}>
                                                     <Grid item>
                                                         <Typography variant="h4">
-                                                            Disapprovers: {this.state.disapprovers.length}
+                                                            Disapprovers: {this.props.disapprovers.length}
                                                         </Typography>
                                                     </Grid>
                                                     <Grid item>
                                                         <List className="disapprovers">
-                                                            {this.renderDisapprovers()}
+                                                            {this.renderDisapprovers(this.props.disapprovers)}
                                                         </List>
                                                     </Grid>
                                                 </Grid>
