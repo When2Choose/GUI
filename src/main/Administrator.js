@@ -22,34 +22,17 @@ function Administrator() {
       <div className="LeftAdministratorContent">
         <Card>
           <CardContent>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell style={{fontWeight: "bold",}}>Choices</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <TableRow key={row.choice}>
-                    <TableCell component="th" scope="row">
-                      {row.choice}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+            <div className="GenerateReport">
+              <Link to="/adminReport">
+                <Button variant="contained" id="GenerateReport" color="primary" size="large">Generate Report of Choices</Button>
+              </Link>
+            </div>
           </CardContent>
         </Card>
       </div>
       <div className="RightAdministratorContent">
         <Card variant="outlined">
           <CardContent>
-            <div className="GenerateReport">
-              <Link to="/adminReport">
-                <Button variant="contained" id="GenerateReport" color="primary" size="large">Generate Report of Choices</Button>
-              </Link>
-            </div>
-            <hr/>
             <div className="DeleteChoices">
               <Typography variant="body1">Delete all choices more than </Typography>
               <TextField id="NumChoiceDelete" type="number" style={{width: '6%'}} />
