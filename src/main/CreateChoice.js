@@ -5,11 +5,12 @@ import "./CreateChoice.css"
 function CreateChoice() {
 
     const handleCreate = () => {
-        let memberCount = document.getElementById("memberCount").checkValidity();
-        let description = document.getElementById("choiceDescription").checkValidity();
-        let alt0 = document.getElementById("alternative0").checkValidity();
-        let alt1 = document.getElementById("alternative1").checkValidity();
-        if (memberCount && description && alt0 && alt1) {
+        let nonZeroMembers = document.getElementById("memberCount").value > 0;
+        let validMembers = document.getElementById("memberCount").checkValidity();
+        let validDescription = document.getElementById("choiceDescription").checkValidity();
+        let validAlt0 = document.getElementById("alternative0").checkValidity();
+        let validAlt1 = document.getElementById("alternative1").checkValidity();
+        if (nonZeroMembers && validMembers && validDescription && validAlt0 && validAlt1) {
             var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
             const postTo = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/createChoice";
             xmlhttp.open("POST", postTo, true);

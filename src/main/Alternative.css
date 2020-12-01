@@ -23,3 +23,13 @@ div.DisapprovalPane {
     clear: both;
     display: block;
 }
+
+.approvers {
+    float: right;
+    padding-right: 10px;
+}
+
+.disapprovers {
+    float: left;
+    padding-left: 10px;
+}

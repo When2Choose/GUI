@@ -18,3 +18,7 @@ div.CompleteChoice {
 #ViewChoiceContent {
     visibility: hidden;
 }
+
+#choiceDescription {
+    padding: 2%;
+}

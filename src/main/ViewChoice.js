@@ -9,21 +9,107 @@ import {
 
 class ViewChoice extends React.Component {
 
+    constructor() {
+        super();
+        this.state = {
+            name: "React",
+            alternative0: <Alternative number="0" id="alternative0"/>,
+            alternative1: <Alternative number="1" id="alternative1"/>,
+            alternative2: <Alternative number="2" id="alternative2"/>,
+            alternative3: <Alternative number="3" id="alternative3"/>,
+            alternative4: <Alternative number="4" id="alternative4"/>
+        }
+    }
+
+    setHidden(i) {
+        switch (i) {
+            case 2:
+                this.setState({hide2: false});
+                break;
+            case 3:
+                this.setState({hide3: false});
+                break;
+            case 4:
+                this.setState({hide4: false});
+                break;
+            default:
+                break;
+        }
+    }
+
     componentDidMount() {
         const id = localStorage.getItem("choiceID");
         var xmlhttp = new XMLHttpRequest();
         const postTo = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice";
         xmlhttp.open("POST", postTo, true);
         xmlhttp.responseType = "json";
-        xmlhttp.onloadend = function () {
+        xmlhttp.onloadend = () => {
             console.log("Response: " + JSON.stringify(xmlhttp.response));
-            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            if (xmlhttp.readyState === XMLHttpRequest.DONE && xmlhttp.response.statusCode === 200) {
                 document.getElementById("ViewChoiceContent").style.visibility = "visible";
                 document.getElementById("choiceDescription").innerText = JSON.parse(xmlhttp.response.response)["Description"];
                 let alternatives = JSON.parse(xmlhttp.response.response)["Alternatives"];
                 for (let i = 0; i < 5; i++) {
-                    document.getElementById("details" + i).innerText = alternatives[i]["description"];
+                    if (alternatives[i]["description"] === "") {
+                        switch (i) {
+                            case 0:
+                                this.setState({alternative0: false});
+                                break;
+                            case 1:
+                                this.setState({alternative1: false});
+                                break;
+                            case 2:
+                                this.setState({alternative2: false});
+                                break;
+                            case 3:
+                                this.setState({alternative3: false});
+                                break;
+                            case 4:
+                                this.setState({alternative4: false});
+                                break;
+                            default:
+                                break;
+                        }
+                    } else {
+                        document.getElementById("details" + i).innerText = alternatives[i]["description"];
+                        switch (i) {
+                            case 0:
+                                this.setState({
+                                    alternative0: <Alternative number="0" approvers={alternatives[i]["Approvers"]}
+                                                               disapprovers={alternatives[i]["Disapprovers"]}/>
+                                });
+                                break;
+                            case 1:
+                                this.setState({
+                                    alternative1: <Alternative number="1" approvers={alternatives[i]["Approvers"]}
+                                                               disapprovers={alternatives[i]["Disapprovers"]}/>
+                                });
+                                break;
+                            case 2:
+                                this.setState({
+                                    alternative2: <Alternative number="2" approvers={alternatives[i]["Approvers"]}
+                                                               disapprovers={alternatives[i]["Disapprovers"]}/>
+                                });
+                                break;
+                            case 3:
+                                this.setState({
+                                    alternative3: <Alternative number="3" approvers={alternatives[i]["Approvers"]}
+                                                               disapprovers={alternatives[i]["Disapprovers"]}/>
+                                });
+                                break;
+                            case 4:
+                                this.setState({
+                                    alternative4: <Alternative number="4" approvers={alternatives[i]["Approvers"]}
+                                                               disapprovers={alternatives[i]["Disapprovers"]}/>
+                                });
+                                break;
+                            default:
+                                break;
+                        }
+
+                    }
                 }
+                this.forceUpdate();
             }
         };
 
@@ -52,22 +138,11 @@ class ViewChoice extends React.Component {
                                     style={{float: "right"}}>Complete</Button>
                         </Link>
                     </Grid>
-                    <Grid item xs={12} id="alt0">
-                        <Alternative number="0" id="alternative0"/>
-                    </Grid>
-
-                    <Grid item xs={12} id="alt1">
-                        <Alternative number="1" id="alternative1"/>
-                    </Grid>
-                    <Grid item xs={12} id="alt2">
-                        <Alternative number="2" id="alternative2"/>
-                    </Grid>
-                    <Grid item xs={12} id="alt3">
-                        <Alternative number="3" id="alternative3"/>
-                    </Grid>
-                    <Grid item xs={12} id="alt4">
-                        <Alternative number="4" id="alternative4"/>
-                    </Grid>
+                    {this.state.alternative0}
+                    {this.state.alternative1}
+                    {this.state.alternative2}
+                    {this.state.alternative3}
+                    {this.state.alternative4}
                 </Grid>
             </div>
         );
