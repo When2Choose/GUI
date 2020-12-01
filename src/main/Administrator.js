@@ -1,5 +1,6 @@
 import React from "react";
 import {Typography, TextField, Button, CardContent, Card, Table, TableRow, TableCell, TableBody, TableHead} from "@material-ui/core";
+import {Link} from "react-router-dom";
 import "./Administrator.css";
 
 function createData(choice) {
@@ -44,7 +45,9 @@ function Administrator() {
         <Card variant="outlined">
           <CardContent>
             <div className="GenerateReport">
-              <Button variant="contained" id="GenerateReport" color="primary" size="large">Generate Report of Choices</Button>
+              <Link to="/adminReport">
+                <Button variant="contained" id="GenerateReport" color="primary" size="large">Generate Report of Choices</Button>
+              </Link>
             </div>
             <hr/>
             <div className="DeleteChoices">
