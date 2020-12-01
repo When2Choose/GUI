@@ -28,7 +28,7 @@ function Login() {
                 } else if (this.response.statusCode === 400) {
                     alert("ERROR: "+this.response.response);
                 }
-            };
+            }
 
             const data = {
                 name: document.getElementById("UserName").value,

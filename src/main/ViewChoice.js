@@ -21,22 +21,6 @@ class ViewChoice extends React.Component {
         }
     }
 
-    setHidden(i) {
-        switch (i) {
-            case 2:
-                this.setState({hide2: false});
-                break;
-            case 3:
-                this.setState({hide3: false});
-                break;
-            case 4:
-                this.setState({hide4: false});
-                break;
-            default:
-                break;
-        }
-    }
-
     componentDidMount() {
         const id = localStorage.getItem("choiceID");
         var xmlhttp = new XMLHttpRequest();
@@ -106,7 +90,6 @@ class ViewChoice extends React.Component {
                             default:
                                 break;
                         }
-
                     }
                 }
                 this.forceUpdate();

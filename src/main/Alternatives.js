@@ -5,8 +5,19 @@ import {withRouter} from "react-router-dom";
 
 class Alternatives extends React.Component {
 
+    constructor() {
+        super();
+        this.state = {
+            name: "React",
+            approvers: [],
+            disapprovers: [],
+            index: -1
+        }
+    }
 
-    renderApprovers(alternativeNumber, approvers) {
+
+    renderApprovers() {
+        const {approvers} = this.state;
         return (approvers.map((value) => {
             const labelId = `checkbox-list-label-${value}`;
             return (
@@ -17,7 +28,8 @@ class Alternatives extends React.Component {
         }));
     }
 
-    renderDisapprovers(alternativeNumber, disapprovers) {
+    renderDisapprovers() {
+        const {disapprovers} = this.state;
         return (disapprovers.map((value) => {
             const labelId = `checkbox-list-label-${value}`;
             return (
@@ -26,6 +38,35 @@ class Alternatives extends React.Component {
                 </ListItem>
             );
         }));
+    }
+
+    handleApprove() {
+        let xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+        const postTo = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice/%7BchoiceId%7D/%7BalternativeIndex%7D/approveAlternative";
+        xmlhttp.open("POST", postTo, true);
+        xmlhttp.responseType = "json";
+        xmlhttp.onloadend = () => {
+            console.log("Response: " + JSON.stringify(xmlhttp.response));
+            if (this.readyState === XMLHttpRequest.DONE && this.response.statusCode === 200) {
+                //TODO: refresh alternative
+            } else if (this.response.statusCode === 400) {
+                alert("ERROR: " + this.response.response);
+            }
+        }
+        const data = {
+            user: localStorage.getItem("name"),
+            alternative: this.state.index,
+            choiceId: localStorage.getItem("choiceID")
+        }
+        console.log("local: " + JSON.stringify(data));
+        xmlhttp.send(JSON.stringify(data));
+    }
+
+    componentDidMount() {
+        this.setState({approvers: this.props.approvers});
+        this.setState({disapprovers: this.props.disapprovers});
+        this.setState({index: this.props.number})
+        this.forceUpdate();
     }
 
     render() {
@@ -57,12 +98,12 @@ class Alternatives extends React.Component {
                                                 <Grid container spacing={3}>
                                                     <Grid item>
                                                         <Typography variant="h4">
-                                                            Approvers
+                                                            Approvers: {this.state.approvers.length}
                                                         </Typography>
                                                     </Grid>
                                                     <Grid item>
                                                         <List className="approvers">
-                                                            {this.renderApprovers(this.props.number, this.props.approvers)}
+                                                            {this.renderApprovers()}
                                                         </List>
                                                     </Grid>
                                                 </Grid>
@@ -75,12 +116,12 @@ class Alternatives extends React.Component {
                                                 <Grid container spacing={3}>
                                                     <Grid item>
                                                         <Typography variant="h4">
-                                                            Disapprovers
+                                                            Disapprovers: {this.state.disapprovers.length}
                                                         </Typography>
                                                     </Grid>
                                                     <Grid item>
                                                         <List className="disapprovers">
-                                                            {this.renderDisapprovers(this.props.number, this.props.disapprovers)}
+                                                            {this.renderDisapprovers()}
                                                         </List>
                                                     </Grid>
                                                 </Grid>
