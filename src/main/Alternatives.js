@@ -37,9 +37,8 @@ class Alternatives extends React.Component {
     handleApprove() {
         const name = localStorage.getItem("user");
         if (this.props.disapprovers.includes(name)) {
-            this.removeDisapprove(false);
-        }
-        if (this.props.approvers.includes(name)){
+            this.swapToApprove()
+        } else if (this.props.approvers.includes(name)){
             this.removeApprove(true);
         } else {
             this.approve(true);
@@ -49,14 +48,55 @@ class Alternatives extends React.Component {
     handleDisapprove() {
         const name = localStorage.getItem("user");
         if (this.props.approvers.includes(name)){
-            this.removeApprove(false);
-        }
-        if (this.props.disapprovers.includes(name)) {
+            this.swapToDisapprove(false);
+        }else if (this.props.disapprovers.includes(name)) {
             this.removeDisapprove(true);
         } else {
             this.disapprove(true);
         }
+    }
 
+    swapToApprove() {
+        // remove diapprove, then approve
+        let xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+        xmlhttp.open("POST", "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice/removeDisapprove", true);
+        xmlhttp.responseType = "json";
+        xmlhttp.onloadend = () => {
+            console.log("Response: " + JSON.stringify(xmlhttp.response));
+            if (xmlhttp.response.statusCode === 400) {
+                alert("ERROR: " + xmlhttp.response.response);
+            } else {
+                this.approve(true);
+            }
+        }
+        const data = {
+            user: localStorage.getItem("user"),
+            alternative: parseInt(this.props.number),
+            choiceId: localStorage.getItem("choiceID")
+        }
+        console.log("local: " + JSON.stringify(data));
+        xmlhttp.send(JSON.stringify(data));
+    }
+
+    swapToDisapprove() {
+        let xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+        xmlhttp.open("POST", "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice/removeApprove", true);
+        xmlhttp.responseType = "json";
+        xmlhttp.onloadend = () => {
+            console.log("Response: " + JSON.stringify(xmlhttp.response));
+            if (xmlhttp.response.statusCode === 400) {
+                alert("ERROR: " + xmlhttp.response.response);
+            } else {
+                this.disapprove(true);
+            }
+        }
+        const data = {
+            user: localStorage.getItem("user"),
+            alternative: parseInt(this.props.number),
+            choiceId: localStorage.getItem("choiceID")
+        }
+        console.log("local: " + JSON.stringify(data));
+        xmlhttp.send(JSON.stringify(data));
     }
 
     approve(refresh) {
@@ -100,6 +140,24 @@ class Alternatives extends React.Component {
         xmlhttp.send(JSON.stringify(data));
     }
 
+    getApproveColor() {
+        const name = localStorage.getItem("user");
+        if (this.props.approvers.includes(name)){
+            return "grey";
+        } else {
+            return "primary";
+        }
+    }
+
+    getDisapproveColor() {
+        const name = localStorage.getItem("user");
+        if (this.props.disapprovers.includes(name)){
+            return "grey";
+        } else {
+            return "primary";
+        }
+    }
+
     render() {
         return (
             <Grid item xs={12}>
@@ -116,11 +174,11 @@ class Alternatives extends React.Component {
                             <div className="ApprovalContent">
                                 <Grid container spacing={3} style={{paddingLeft: "1%", paddingRight: "1%"}}>
                                     <Grid item xs={6}>
-                                        <Button variant="contained" id="Approve" color="primary"
+                                        <Button variant="contained" id="Approve" color={this.getApproveColor()}
                                                 style={{float: "right"}} onClick={this.handleApprove}>Approve</Button>
                                     </Grid>
                                     <Grid item xs={6}>
-                                        <Button variant="contained" id="Disapprove" color="primary"
+                                        <Button variant="contained" id="Disapprove" color={this.getDisapproveColor()}
                                                 style={{float: "left"}}
                                                 onClick={this.handleDisapprove}>Disapprove</Button>
                                     </Grid>
