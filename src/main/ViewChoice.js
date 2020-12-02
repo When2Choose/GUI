@@ -1,5 +1,9 @@
 import * as React from "react";
-import {Button, Typography, Grid} from "@material-ui/core";
+import {
+    Button,
+    Typography,
+    Grid
+} from "@material-ui/core";
 import Alternative from "./Alternatives";
 import "./ViewChoice.css";
 import {
