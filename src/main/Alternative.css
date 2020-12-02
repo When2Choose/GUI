@@ -3,18 +3,6 @@ div.ApprovalContent {
     clear:both;
 }
 
-div.ApprovalPane {
-    float: left;
-    clear: both;
-    display: block;
-}
-
-div.DisapprovalPane {
-    float: right;
-    clear: both;
-    display: block;
-}
-
 .approvers {
     float: right;
     padding-right: 10px;

@@ -187,43 +187,60 @@ class Alternatives extends React.Component {
                                 <Grid item xs={12}>
                                     <Grid container spacing={5}>
                                         <Grid item xs={6}>
-                                            <Button variant="contained" id="Approve" color={this.getApproveColor()}
-                                                    style={{float: "right"}}
-                                                    onClick={this.handleApprove}>Approve</Button>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <Button variant="contained" id="Disapprove"
-                                                    color={this.getDisapproveColor()}
-                                                    style={{float: "left"}}
-                                                    onClick={this.handleDisapprove}>Disapprove</Button>
-                                        </Grid>
-                                        <Grid item xs={6}>
-                                            <Grid container spacing={3} direction="column">
-                                                <Grid item>
-                                                    <Typography variant="h4" align="center">
-                                                        Approvers: {this.props.approvers.length}
-                                                    </Typography>
-                                                </Grid>
-                                                <Grid item>
-                                                    <Grid container spacing={3}>
-                                                        {this.renderApprovers(this.props.approvers)}
+                                            <Card variant="outlined">
+                                                <CardContent>
+                                                    <Grid container direction="column">
+                                                        <Grid item>
+                                                            <Grid container direction="row" justify="center">
+                                                                <Grid item xs={4}>
+                                                                    <Typography variant="h4" align="center">
+                                                                        Approvers: {this.props.approvers.length}
+                                                                    </Typography>
+                                                                </Grid>
+                                                                <Grid item xs={2}>
+                                                                    <Button variant="contained" id="Approve"
+                                                                            color={this.getApproveColor()}
+                                                                            style={{float: "right"}}
+                                                                            onClick={this.handleApprove}>Approve</Button>
+                                                                </Grid>
+                                                            </Grid>
+                                                        </Grid>
+                                                        <Grid item>
+                                                            <Grid container spacing={3}>
+                                                                {this.renderApprovers(this.props.approvers)}
+                                                            </Grid>
+                                                        </Grid>
                                                     </Grid>
-                                                </Grid>
-                                            </Grid>
+                                                </CardContent>
+                                            </Card>
                                         </Grid>
                                         <Grid item xs={6}>
-                                            <Grid container spacing={3} direction="column">
-                                                <Grid item>
-                                                    <Typography variant="h4">
-                                                        Disapprovers: {this.props.disapprovers.length}
-                                                    </Typography>
-                                                </Grid>
-                                                <Grid item>
-                                                    <Grid container spacing={3}>
-                                                        {this.renderDisapprovers(this.props.disapprovers)}
+                                            <Card variant="outlined">
+                                                <CardContent>
+                                                    <Grid container direction="column">
+                                                        <Grid item>
+                                                            <Grid container direction="row" justify="center">
+                                                                <Grid item xs={4}>
+                                                                    <Typography variant="h4">
+                                                                        Disapprovers: {this.props.disapprovers.length}
+                                                                    </Typography>
+                                                                </Grid>
+                                                                <Grid item xs={2}>
+                                                                    <Button variant="contained" id="Disapprove"
+                                                                            color={this.getDisapproveColor()}
+                                                                            style={{float: "left"}}
+                                                                            onClick={this.handleDisapprove}>Disapprove</Button>
+                                                                </Grid>
+                                                            </Grid>
+                                                        </Grid>
+                                                        <Grid item>
+                                                            <Grid container spacing={3}>
+                                                                {this.renderDisapprovers(this.props.disapprovers)}
+                                                            </Grid>
+                                                        </Grid>
                                                     </Grid>
-                                                </Grid>
-                                            </Grid>
+                                                </CardContent>
+                                            </Card>
                                         </Grid>
                                     </Grid>
                                 </Grid>

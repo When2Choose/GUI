@@ -48,15 +48,15 @@ class Feedback extends React.Component {
                 <Grid container spacing={3}>
                     {this.renderFeedback([
                         {user: "grant", content: "test"},
-                        // {user: "anthony", content: "test1"},
-                        // {user: "arun", content: "test2"}
+                        {user: "anthony", content: "test1"},
+                        {user: "arun", content: "test2"}
                     ])}
                     <Grid item xs={10}>
                         <TextField id="commentInput" type="text"
                                    label="Enter feedback:   " className="TextEntry" multiline={true}/>
                     </Grid>
                     <Grid item xs={2}>
-                        <Button onClick={this.handleComment()} variant="contained" color="primary">Test</Button>
+                        <Button onClick={this.handleComment()} variant="contained" color="primary">Submit</Button>
                     </Grid>
                 </Grid>
             </div>
