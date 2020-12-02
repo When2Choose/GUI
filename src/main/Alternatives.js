@@ -1,5 +1,11 @@
 import React from "react";
-import {Button, Typography, List, Card, Grid, ListItem, ListItemText, CardContent} from "@material-ui/core";
+import {
+    Button,
+    Typography,
+    Card,
+    Grid,
+    CardContent
+} from "@material-ui/core";
 import "./Alternative.css"
 import {withRouter} from "react-router-dom";
 import Feedback from "./Feedback";
