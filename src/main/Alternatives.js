@@ -2,6 +2,7 @@ import React from "react";
 import {Button, Typography, List, Card, Grid, ListItem, ListItemText, CardContent} from "@material-ui/core";
 import "./Alternative.css"
 import {withRouter} from "react-router-dom";
+import Feedback from "./Feedback";
 
 class Alternatives extends React.Component {
 
@@ -14,22 +15,32 @@ class Alternatives extends React.Component {
 
     renderApprovers(approvers) {
         return (approvers.map((value) => {
-            const labelId = `checkbox-list-label-${value}`;
             return (
-                <ListItem key={value} role={undefined} dense button>
-                    <ListItemText id={labelId} primary={value}/>
-                </ListItem>
+                <Grid item xs={6}>
+                    <Card variant="outlined">
+                        <CardContent>
+                            <Typography variant="body1">
+                                {value}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
             );
         }));
     }
 
     renderDisapprovers(disapprovers) {
         return (disapprovers.map((value) => {
-            const labelId = `checkbox-list-label-${value}`;
             return (
-                <ListItem key={value} role={undefined} dense button>
-                    <ListItemText id={labelId} primary={value}/>
-                </ListItem>
+                <Grid item xs={6}>
+                    <Card variant="outlined">
+                        <CardContent>
+                            <Typography variant="body1">
+                                {value}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
             );
         }));
     }
@@ -38,7 +49,7 @@ class Alternatives extends React.Component {
         const name = localStorage.getItem("user");
         if (this.props.disapprovers.includes(name)) {
             this.swapToApprove()
-        } else if (this.props.approvers.includes(name)){
+        } else if (this.props.approvers.includes(name)) {
             this.removeApprove(true);
         } else {
             this.approve(true);
@@ -47,9 +58,9 @@ class Alternatives extends React.Component {
 
     handleDisapprove() {
         const name = localStorage.getItem("user");
-        if (this.props.approvers.includes(name)){
+        if (this.props.approvers.includes(name)) {
             this.swapToDisapprove(false);
-        }else if (this.props.disapprovers.includes(name)) {
+        } else if (this.props.disapprovers.includes(name)) {
             this.removeDisapprove(true);
         } else {
             this.disapprove(true);
@@ -142,7 +153,7 @@ class Alternatives extends React.Component {
 
     getApproveColor() {
         const name = localStorage.getItem("user");
-        if (this.props.approvers.includes(name)){
+        if (this.props.approvers.includes(name)) {
             return "grey";
         } else {
             return "primary";
@@ -151,7 +162,7 @@ class Alternatives extends React.Component {
 
     getDisapproveColor() {
         const name = localStorage.getItem("user");
-        if (this.props.disapprovers.includes(name)){
+        if (this.props.disapprovers.includes(name)) {
             return "grey";
         } else {
             return "primary";
@@ -164,62 +175,71 @@ class Alternatives extends React.Component {
                 <Card variant="outlined" style={{paddingBottom: 10}}>
                     <CardContent>
                         <div className="Alternative">
-                            <div className="AlternativeHeading">
-                                <Typography variant="h3">Alternative {parseInt(this.props.number) + 1}</Typography>
-                            </div>
-                            <div className="AlternativeDescription">
-                                <Typography variant="body1" display="block" align="left"
-                                            id={"details" + this.props.number}/>
-                            </div>
-                            <div className="ApprovalContent">
-                                <Grid container spacing={3} style={{paddingLeft: "1%", paddingRight: "1%"}}>
-                                    <Grid item xs={6}>
-                                        <Button variant="contained" id="Approve" color={this.getApproveColor()}
-                                                style={{float: "right"}} onClick={this.handleApprove}>Approve</Button>
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <Button variant="contained" id="Disapprove" color={this.getDisapproveColor()}
-                                                style={{float: "left"}}
-                                                onClick={this.handleDisapprove}>Disapprove</Button>
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <Card variant="outlined">
-                                            <CardContent>
-                                                <Grid container spacing={3}>
-                                                    <Grid item>
-                                                        <Typography variant="h4">
-                                                            Approvers: {this.props.approvers.length}
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item>
-                                                        <List className="approvers">
-                                                            {this.renderApprovers(this.props.approvers)}
-                                                        </List>
+                            <Grid container spacing={3}>
+                                <Grid item xs={12}>
+                                    <Typography variant="h3"
+                                                align="left">Alternative {parseInt(this.props.number) + 1}</Typography>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography variant="body1" display="block" align="left"
+                                                id={"details" + this.props.number}/>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Grid container spacing={5}>
+                                        <Grid item xs={6}>
+                                            <Button variant="contained" id="Approve" color={this.getApproveColor()}
+                                                    style={{float: "right"}}
+                                                    onClick={this.handleApprove}>Approve</Button>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Button variant="contained" id="Disapprove"
+                                                    color={this.getDisapproveColor()}
+                                                    style={{float: "left"}}
+                                                    onClick={this.handleDisapprove}>Disapprove</Button>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Grid container spacing={3} direction="column">
+                                                <Grid item>
+                                                    <Typography variant="h4" align="center">
+                                                        Approvers: {this.props.approvers.length}
+                                                    </Typography>
+                                                </Grid>
+                                                <Grid item>
+                                                    <Grid container spacing={3}>
+                                                        {this.renderApprovers(this.props.approvers)}
                                                     </Grid>
                                                 </Grid>
-                                            </CardContent>
-                                        </Card>
-                                    </Grid>
-                                    <Grid item xs={6}>
-                                        <Card variant="outlined">
-                                            <CardContent>
-                                                <Grid container spacing={3}>
-                                                    <Grid item>
-                                                        <Typography variant="h4">
-                                                            Disapprovers: {this.props.disapprovers.length}
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item>
-                                                        <List className="disapprovers">
-                                                            {this.renderDisapprovers(this.props.disapprovers)}
-                                                        </List>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid item xs={6}>
+                                            <Grid container spacing={3} direction="column">
+                                                <Grid item>
+                                                    <Typography variant="h4">
+                                                        Disapprovers: {this.props.disapprovers.length}
+                                                    </Typography>
+                                                </Grid>
+                                                <Grid item>
+                                                    <Grid container spacing={3}>
+                                                        {this.renderDisapprovers(this.props.disapprovers)}
                                                     </Grid>
                                                 </Grid>
-                                            </CardContent>
-                                        </Card>
+                                            </Grid>
+                                        </Grid>
                                     </Grid>
                                 </Grid>
-                            </div>
+                                <Grid item xs={12}>
+                                    <Grid container spacing={3}>
+                                        <Grid item xs={12}>
+                                            <Typography variant="h4" align="left">
+                                                Feedback
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item xs={12}>
+                                            <Feedback/>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
                         </div>
                     </CardContent>
                 </Card>

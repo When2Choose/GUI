@@ -78,11 +78,11 @@ class ViewChoice extends React.Component {
                             <Button variant="contained" id="Complete" color="primary">Complete</Button>
                         </Link>
                     </Grid>
-                    {this.state.alternative[0]}
-                    {this.state.alternative[1]}
-                    {this.state.alternative[2]}
-                    {this.state.alternative[3]}
-                    {this.state.alternative[4]}
+                    {this.state.alternatives[0]}
+                    {this.state.alternatives[1]}
+                    {this.state.alternatives[2]}
+                    {this.state.alternatives[3]}
+                    {this.state.alternatives[4]}
                 </Grid>
             </div>
         );
