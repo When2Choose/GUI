@@ -22,3 +22,7 @@ div.CompleteChoice {
 #choiceDescription {
     padding: 2%;
 }
+
+#Complete {
+    float: right;
+}
