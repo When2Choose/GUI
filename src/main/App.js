@@ -17,7 +17,6 @@ import CreateChoice from "./CreateChoice";
 import Menu from "./Menu";
 import Login from "./Login";
 import ViewChoice from "./ViewChoice";
-import CompleteChoice from "./CompleteChoice";
 import Administrator from "./Administrator";
 import AdminReport from "./AdminReport";
 
@@ -50,9 +49,6 @@ function App() {
                         </Route>
                         <Route path="/create">
                             <CreateChoice/>
-                        </Route>
-                        <Route path="/complete">
-                            <CompleteChoice/>
                         </Route>
                         <Route path="/adminReport">
                             <AdminReport/>

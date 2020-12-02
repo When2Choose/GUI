@@ -1,11 +1,9 @@
 import * as React from "react";
 import {
-    Button,
     Typography,
     Grid
 } from "@material-ui/core";
 import {
-    Link,
     withRouter
 } from "react-router-dom";
 import Alternative from "./Alternatives";
@@ -43,21 +41,22 @@ class ViewChoice extends React.Component {
                     let tempAlternatives = this.state.alternatives;
                     if (alternatives[i]["description"] === "") {
                         tempAlternatives[i] = false;
-
                     } else {
                         document.getElementById("details" + i).innerText = alternatives[i]["description"];
                         tempAlternatives[i] = <Alternative number={i.toString()}
                                                            approvers={alternatives[i]["Approvers"]}
-                                                           disapprovers={alternatives[i]["Disapprovers"]}/>;
+                                                           disapprovers={alternatives[i]["Disapprovers"]}
+                                                           feedback={alternatives[i]["Feedback"]}/>;
                     }
                     this.setState({alternatives: tempAlternatives});
                 }
                 this.forceUpdate();
             }
         };
-        const data = {
-            uuidString: id
-        }
+        const data =
+            {
+                uuidString: id
+            }
         xmlhttp.send(JSON.stringify(data));
         console.log("local: " + JSON.stringify(data));
     }
@@ -70,13 +69,11 @@ class ViewChoice extends React.Component {
                     <Grid item xs={12}>
                         <Typography variant="h2">Choice {id}</Typography>
                     </Grid>
-                    <Grid item xs={9}>
-                        <Typography variant="body1" id="choiceDescription" align="left" display="block"/>
-                    </Grid>
-                    <Grid item xs={3}>
-                        <Link to="/complete">
-                            <Button variant="contained" id="Complete" color="primary">Complete</Button>
-                        </Link>
+                    <Grid item xs={12}>
+                        <Typography variant="h6" align="left" style={{padding:"0px"}}>
+                            Description of choice:
+                        </Typography>
+                        <Typography variant="body1" id="choiceDescription" align="left" />
                     </Grid>
                     {this.state.alternatives[0]}
                     {this.state.alternatives[1]}

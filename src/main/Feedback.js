@@ -19,20 +19,40 @@ class Feedback extends React.Component {
 
     handleComment() {
         // POST
+        const api_url = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice/addFeedback";
+        let xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+        xmlhttp.open("POST", api_url, true);
+        xmlhttp.responseType = "json";
+        xmlhttp.onloadend = () => {
+            console.log("Response: " + JSON.stringify(xmlhttp.response));
+            if (xmlhttp.response.statusCode === 400) {
+                alert("ERROR: " + xmlhttp.response.response);
+            } else {
+                window.location.reload(false);
+            }
+        };
+        const data = {
+            user: localStorage.getItem("user"),
+            alternativeIndex: parseInt(this.props.number),
+            choiceId: localStorage.getItem("choiceID"),
+            feedbackText: document.getElementById("commentInput").value
+        };
+        console.log("local: " + JSON.stringify(data));
+        xmlhttp.send(JSON.stringify(data));
     }
 
-    renderFeedback(feedback) {
-        return (feedback.map((value) => {
+    renderFeedback(feed) {
+        return (feed.map((value) => {
             return (
-                <Grid item xs={12}>
-                    <Card variant="outlined">
+                <Grid item xs={12} key={value["description"]+value["User"]}>
+                    <Card variant="outlined" >
                         <CardContent>
                             <Grid container spacing={2}>
                                 <Grid item xs={12}>
-                            <Typography variant="body1" align="left">{value.content}</Typography>
+                                    <Typography variant="body1" align="left">{value["description"]}</Typography>
                                 </Grid>
                                 <Grid item>
-                            <Typography variant="body2" align="left">posted by: {value.user}</Typography>
+                                    <Typography variant="body2" align="left">posted by: {value["User"]}</Typography>
                                 </Grid>
                             </Grid>
                         </CardContent>
@@ -46,17 +66,13 @@ class Feedback extends React.Component {
         return (
             <div className="FeedbackContent">
                 <Grid container spacing={3}>
-                    {this.renderFeedback([
-                        {user: "grant", content: "test"},
-                        {user: "anthony", content: "test1"},
-                        {user: "arun", content: "test2"}
-                    ])}
+                    {this.renderFeedback(this.props.feedback)}
                     <Grid item xs={10}>
                         <TextField id="commentInput" type="text"
-                                   label="Enter feedback:   " className="TextEntry" multiline={true}/>
+                                   label="Enter feedback:" className="TextEntry" multiline={true}/>
                     </Grid>
                     <Grid item xs={2}>
-                        <Button onClick={this.handleComment()} variant="contained" color="primary">Submit</Button>
+                        <Button onClick={this.handleComment} variant="contained" color="primary">Submit</Button>
                     </Grid>
                 </Grid>
             </div>

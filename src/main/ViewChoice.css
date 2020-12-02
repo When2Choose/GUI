@@ -9,20 +9,10 @@ div.ChoiceDescriptionContent {
     width: 70%;
 }
 
-div.CompleteChoice {
-    padding-top: 5px;
-    float: right;
-    width: 30%;
-}
-
 #ViewChoiceContent {
     visibility: hidden;
 }
 
 #choiceDescription {
-    padding: 2%;
-}
-
-#Complete {
-    float: right;
+    padding-left: 2%;
 }

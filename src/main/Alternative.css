@@ -12,3 +12,7 @@ div.ApprovalContent {
     float: left;
     padding-left: 10px;
 }
+
+.completeButton {
+    float: left;
+}

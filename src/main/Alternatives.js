@@ -22,7 +22,7 @@ class Alternatives extends React.Component {
     renderApprovers(approvers) {
         return (approvers.map((value) => {
             return (
-                <Grid item xs={6}>
+                <Grid item xs={6} key={value}>
                     <Card variant="outlined">
                         <CardContent>
                             <Typography variant="body1">
@@ -38,7 +38,7 @@ class Alternatives extends React.Component {
     renderDisapprovers(disapprovers) {
         return (disapprovers.map((value) => {
             return (
-                <Grid item xs={6}>
+                <Grid item xs={6} key={value}>
                     <Card variant="outlined">
                         <CardContent>
                             <Typography variant="body1">
@@ -71,6 +71,28 @@ class Alternatives extends React.Component {
         } else {
             this.disapprove(true);
         }
+    }
+
+    handleComplete() {
+        const api_url = "";
+        let xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
+        xmlhttp.open("POST", api_url, true);
+        xmlhttp.responseType = "json";
+        xmlhttp.onloadend = () => {
+            console.log("Response: " + JSON.stringify(xmlhttp.response));
+            if (xmlhttp.response.statusCode === 400) {
+                alert("ERROR: " + xmlhttp.response.response);
+            } else {
+                window.location.reload(false);
+            }
+        }
+        const data = {
+            user: localStorage.getItem("user"),
+            alternative: parseInt(this.props.number),
+            choiceId: localStorage.getItem("choiceID")
+        }
+        console.log("local: " + JSON.stringify(data));
+        xmlhttp.send(JSON.stringify(data));
     }
 
     swapToApprove() {
@@ -160,7 +182,7 @@ class Alternatives extends React.Component {
     getApproveColor() {
         const name = localStorage.getItem("user");
         if (this.props.approvers.includes(name)) {
-            return "grey";
+            return "default";
         } else {
             return "primary";
         }
@@ -169,7 +191,7 @@ class Alternatives extends React.Component {
     getDisapproveColor() {
         const name = localStorage.getItem("user");
         if (this.props.disapprovers.includes(name)) {
-            return "grey";
+            return "default";
         } else {
             return "primary";
         }
@@ -182,9 +204,12 @@ class Alternatives extends React.Component {
                     <CardContent>
                         <div className="Alternative">
                             <Grid container spacing={3}>
-                                <Grid item xs={12}>
+                                <Grid item xs={2}>
                                     <Typography variant="h3"
                                                 align="left">Alternative {parseInt(this.props.number) + 1}</Typography>
+                                </Grid>
+                                <Grid item xs={10}>
+                                    <Button variant="contained" className="completeButton" color="primary">Complete</Button>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography variant="body1" display="block" align="left"
@@ -198,12 +223,12 @@ class Alternatives extends React.Component {
                                                     <Grid container direction="column">
                                                         <Grid item>
                                                             <Grid container direction="row" justify="center">
-                                                                <Grid item xs={4}>
+                                                                <Grid item xs={6}>
                                                                     <Typography variant="h4" align="center">
                                                                         Approvers: {this.props.approvers.length}
                                                                     </Typography>
                                                                 </Grid>
-                                                                <Grid item xs={2}>
+                                                                <Grid item xs={1}>
                                                                     <Button variant="contained" id="Approve"
                                                                             color={this.getApproveColor()}
                                                                             style={{float: "right"}}
@@ -226,12 +251,12 @@ class Alternatives extends React.Component {
                                                     <Grid container direction="column">
                                                         <Grid item>
                                                             <Grid container direction="row" justify="center">
-                                                                <Grid item xs={4}>
+                                                                <Grid item xs={6}>
                                                                     <Typography variant="h4">
                                                                         Disapprovers: {this.props.disapprovers.length}
                                                                     </Typography>
                                                                 </Grid>
-                                                                <Grid item xs={2}>
+                                                                <Grid item xs={1}>
                                                                     <Button variant="contained" id="Disapprove"
                                                                             color={this.getDisapproveColor()}
                                                                             style={{float: "left"}}
@@ -258,7 +283,7 @@ class Alternatives extends React.Component {
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Feedback/>
+                                            <Feedback feedback={this.props.feedback}/>
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -274,7 +299,8 @@ class Alternatives extends React.Component {
 
 Alternatives.defaultProps = {
     approvers: [],
-    disapprovers: []
+    disapprovers: [],
+    feedback: []
 }
 
 
