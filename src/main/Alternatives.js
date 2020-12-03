@@ -74,7 +74,7 @@ class Alternatives extends React.Component {
     }
 
     handleComplete() {
-        const api_url = "";
+        const api_url = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice/completeChoice";
         let xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
         xmlhttp.open("POST", api_url, true);
         xmlhttp.responseType = "json";
@@ -87,7 +87,6 @@ class Alternatives extends React.Component {
             }
         }
         const data = {
-            user: localStorage.getItem("user"),
             alternative: parseInt(this.props.number),
             choiceId: localStorage.getItem("choiceID")
         }
@@ -209,7 +208,7 @@ class Alternatives extends React.Component {
                                                 align="left">Alternative {parseInt(this.props.number) + 1}</Typography>
                                 </Grid>
                                 <Grid item xs={10}>
-                                    <Button variant="contained" className="completeButton" color="primary">Complete</Button>
+                                    <Button variant="contained" className="completeButton" color="primary" onClick={this.handleComplete}>Complete</Button>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography variant="body1" display="block" align="left"
