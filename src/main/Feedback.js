@@ -35,10 +35,12 @@ class Feedback extends React.Component {
             user: localStorage.getItem("user"),
             alternativeIndex: parseInt(this.props.number),
             choiceId: localStorage.getItem("choiceID"),
-            feedbackText: document.getElementById("commentInput").value
+            feedbackText: document.getElementById("commentInput"+this.props.number).value
         };
         console.log("local: " + JSON.stringify(data));
-        xmlhttp.send(JSON.stringify(data));
+        if (data.feedbackText !== "") {
+            xmlhttp.send(JSON.stringify(data));
+        }
     }
 
     renderFeedback(feed) {
@@ -68,7 +70,7 @@ class Feedback extends React.Component {
                 <Grid container spacing={3}>
                     {this.renderFeedback(this.props.feedback)}
                     <Grid item xs={10}>
-                        <TextField id="commentInput" type="text"
+                        <TextField id={"commentInput"+this.props.number} type="text"
                                    label="Enter feedback:" className="TextEntry" multiline={true}/>
                     </Grid>
                     <Grid item xs={2}>

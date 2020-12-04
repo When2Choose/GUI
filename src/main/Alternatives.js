@@ -203,11 +203,11 @@ class Alternatives extends React.Component {
                     <CardContent>
                         <div className="Alternative">
                             <Grid container spacing={3}>
-                                <Grid item xs={2}>
+                                <Grid item xs={3}>
                                     <Typography variant="h3"
                                                 align="left">Alternative {parseInt(this.props.number) + 1}</Typography>
                                 </Grid>
-                                <Grid item xs={10}>
+                                <Grid item xs={9}>
                                     <Button variant="contained" className="completeButton" color="primary" onClick={this.handleComplete}>Complete</Button>
                                 </Grid>
                                 <Grid item xs={12}>
@@ -222,15 +222,14 @@ class Alternatives extends React.Component {
                                                     <Grid container direction="column">
                                                         <Grid item>
                                                             <Grid container direction="row" justify="center">
-                                                                <Grid item xs={6}>
+                                                                <Grid item xs={12}>
                                                                     <Typography variant="h4" align="center">
                                                                         Approvers: {this.props.approvers.length}
                                                                     </Typography>
                                                                 </Grid>
-                                                                <Grid item xs={1}>
+                                                                <Grid item xs={12}>
                                                                     <Button variant="contained" id="Approve"
                                                                             color={this.getApproveColor()}
-                                                                            style={{float: "right"}}
                                                                             onClick={this.handleApprove}>Approve</Button>
                                                                 </Grid>
                                                             </Grid>
@@ -250,15 +249,14 @@ class Alternatives extends React.Component {
                                                     <Grid container direction="column">
                                                         <Grid item>
                                                             <Grid container direction="row" justify="center">
-                                                                <Grid item xs={6}>
+                                                                <Grid item xs={12}>
                                                                     <Typography variant="h4">
                                                                         Disapprovers: {this.props.disapprovers.length}
                                                                     </Typography>
                                                                 </Grid>
-                                                                <Grid item xs={1}>
+                                                                <Grid item xs={12}>
                                                                     <Button variant="contained" id="Disapprove"
                                                                             color={this.getDisapproveColor()}
-                                                                            style={{float: "left"}}
                                                                             onClick={this.handleDisapprove}>Disapprove</Button>
                                                                 </Grid>
                                                             </Grid>
@@ -282,7 +280,7 @@ class Alternatives extends React.Component {
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Feedback feedback={this.props.feedback}/>
+                                            <Feedback number={this.props.number} feedback={this.props.feedback}/>
                                         </Grid>
                                     </Grid>
                                 </Grid>
