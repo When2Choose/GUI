@@ -82,10 +82,11 @@ class Alternatives extends React.Component {
         xmlhttp.responseType = "json";
         xmlhttp.onloadend = () => {
             console.log("Response: " + JSON.stringify(xmlhttp.response));
-            if (xmlhttp.response.statusCode === 400) {
+            if(xmlhttp.response.statusCode === 200) {
+              window.location.href="#/completeChoice/";
+            }
+            else if (xmlhttp.response.statusCode === 400) {
                 alert("ERROR: " + xmlhttp.response.response);
-            } else {
-                window.location.reload(false);
             }
         }
         const data = {
