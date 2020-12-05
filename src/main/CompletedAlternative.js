@@ -1,6 +1,5 @@
 import React from "react";
 import {
-    Button,
     Typography,
     Card,
     Grid,
@@ -11,10 +10,6 @@ import {withRouter} from "react-router-dom";
 import Feedback from "./Feedback";
 
 class CompletedAlternative extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     renderApprovers(approvers) {
         return (approvers.map((value) => {

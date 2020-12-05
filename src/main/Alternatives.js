@@ -282,7 +282,7 @@ class Alternatives extends React.Component {
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Feedback feedback={this.props.feedback} notComplete={true}/>
+                                            <Feedback number={this.props.number} feedback={this.props.feedback} notComplete={true}/>
                                         </Grid>
                                     </Grid>
                                 </Grid>

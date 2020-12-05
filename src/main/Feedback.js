@@ -70,8 +70,8 @@ class Feedback extends React.Component {
                 <Grid container spacing={3}>
                     {this.renderFeedback(this.props.feedback)}
                     <Grid item xs={10}>
-                        {this.props.notComplete && <TextField id="commentInput" type="text"
-                                   label="Enter feedback:" className="TextEntry" multiline={true}/> }
+                        {this.props.notComplete && <TextField id={"commentInput"+this.props.number} type="text"
+                                   label="Enter feedback:" className="TextEntry" multiline={true}/>}
                     </Grid>
                     <Grid item xs={2}>
                         {this.props.notComplete && <Button onClick={this.handleComment} variant="contained" color="primary">Submit</Button>}
