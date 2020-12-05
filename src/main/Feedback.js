@@ -70,16 +70,21 @@ class Feedback extends React.Component {
                 <Grid container spacing={3}>
                     {this.renderFeedback(this.props.feedback)}
                     <Grid item xs={10}>
-                        <TextField id={"commentInput"+this.props.number} type="text"
-                                   label="Enter feedback:" className="TextEntry" multiline={true}/>
+                        {this.props.notComplete && <TextField id={"commentInput"+this.props.number} type="text"
+                                   label="Enter feedback:" className="TextEntry" multiline={true}/>}
                     </Grid>
                     <Grid item xs={2}>
-                        <Button onClick={this.handleComment} variant="contained" color="primary">Submit</Button>
+                        {this.props.notComplete && <Button onClick={this.handleComment} variant="contained" color="primary">Submit</Button>}
                     </Grid>
                 </Grid>
             </div>
         );
     }
+}
+
+Feedback.defaultProps = {
+    feedback: [],
+    notComplete: true
 }
 
 export default withRouter(Feedback);

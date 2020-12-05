@@ -17,6 +17,7 @@ class Alternatives extends React.Component {
         this.handleApprove = this.handleApprove.bind(this);
         this.handleDisapprove = this.handleDisapprove.bind(this);
         this.post = this.post.bind(this);
+        this.handleComplete = this.handleComplete.bind(this);
     }
 
     renderApprovers(approvers) {
@@ -74,20 +75,22 @@ class Alternatives extends React.Component {
     }
 
     handleComplete() {
+        console.log(this.props.number);
         const api_url = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice/completeChoice";
         let xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
         xmlhttp.open("POST", api_url, true);
         xmlhttp.responseType = "json";
         xmlhttp.onloadend = () => {
             console.log("Response: " + JSON.stringify(xmlhttp.response));
-            if (xmlhttp.response.statusCode === 400) {
+            if(xmlhttp.response.statusCode === 200) {
+              window.location.href="#/completeChoice/";
+            }
+            else if (xmlhttp.response.statusCode === 400) {
                 alert("ERROR: " + xmlhttp.response.response);
-            } else {
-                window.location.reload(false);
             }
         }
         const data = {
-            alternative: parseInt(this.props.number),
+            alternativeIndex: parseInt(this.props.number),
             choiceId: localStorage.getItem("choiceID")
         }
         console.log("local: " + JSON.stringify(data));
@@ -280,7 +283,7 @@ class Alternatives extends React.Component {
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Feedback number={this.props.number} feedback={this.props.feedback}/>
+                                            <Feedback number={this.props.number} feedback={this.props.feedback} notComplete={true}/>
                                         </Grid>
                                     </Grid>
                                 </Grid>

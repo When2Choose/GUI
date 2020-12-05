@@ -19,6 +19,7 @@ import Login from "./Login";
 import ViewChoice from "./ViewChoice";
 import Administrator from "./Administrator";
 import AdminReport from "./AdminReport";
+import CompleteChoice from "./CompleteChoice";
 
 function App() {
     document.title = "Choice App";
@@ -52,6 +53,9 @@ function App() {
                         </Route>
                         <Route path="/adminReport">
                             <AdminReport/>
+                        </Route>
+                        <Route path="/completeChoice">
+                            <CompleteChoice/>
                         </Route>
                         <Route path="/">
                             <Login/>
