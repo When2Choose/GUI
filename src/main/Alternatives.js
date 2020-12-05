@@ -17,6 +17,7 @@ class Alternatives extends React.Component {
         this.handleApprove = this.handleApprove.bind(this);
         this.handleDisapprove = this.handleDisapprove.bind(this);
         this.post = this.post.bind(this);
+        this.handleComplete = this.handleComplete.bind(this);
     }
 
     renderApprovers(approvers) {
@@ -74,6 +75,7 @@ class Alternatives extends React.Component {
     }
 
     handleComplete() {
+        console.log(this.props.number);
         const api_url = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice/completeChoice";
         let xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
         xmlhttp.open("POST", api_url, true);
@@ -280,7 +282,7 @@ class Alternatives extends React.Component {
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Feedback number={this.props.number} feedback={this.props.feedback}/>
+                                            <Feedback feedback={this.props.feedback} notComplete={true}/>
                                         </Grid>
                                     </Grid>
                                 </Grid>

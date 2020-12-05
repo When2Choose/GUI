@@ -6,7 +6,7 @@ import {
 import {
     withRouter
 } from "react-router-dom";
-import Alternative from "./Alternatives";
+import CompletedAlternative from "./CompletedAlternative";
 import "./CompleteChoice.css";
 
 class CompleteChoice extends React.Component {
@@ -16,11 +16,11 @@ class CompleteChoice extends React.Component {
       this.state = {
           name: "React",
           alternatives: [
-              <Alternative number="0" id="alternative0"/>,
-              <Alternative number="1" id="alternative1"/>,
-              <Alternative number="2" id="alternative2"/>,
-              <Alternative number="3" id="alternative3"/>,
-              <Alternative number="4" id="alternative4"/>
+              <CompletedAlternative number="0" id="alternative0"/>,
+              <CompletedAlternative number="1" id="alternative1"/>,
+              <CompletedAlternative number="2" id="alternative2"/>,
+              <CompletedAlternative number="3" id="alternative3"/>,
+              <CompletedAlternative number="4" id="alternative4"/>
           ]
       }
   }
@@ -39,13 +39,13 @@ class CompleteChoice extends React.Component {
         document.getElementById("choiceDescription").innerText = JSON.parse(xmlhttp.response.response)["Description"];
         let alternatives = JSON.parse(xmlhttp.response.response)["Alternatives"];
         for (let i = 0; i < 5; i++) {
-          let tempAlternatives = this.state.alternative;
-          console.log(alternatives[i]["isChosen"]);
+          let tempAlternatives = this.state.alternatives;
           if (alternatives[i]["isChosen"] === 0) {
               tempAlternatives[i] = false;
           } else {
             document.getElementById("details" + i).innerText = alternatives[i]["description"];
-            tempAlternatives[i] = <Alternative number={i.toString()}
+
+            tempAlternatives[i] = <CompletedAlternative number={i.toString()}
                                                approvers={alternatives[i]["Approvers"]}
                                                disapprovers={alternatives[i]["Disapprovers"]}
                                                feedback={alternatives[i]["Feedback"]}/>;
