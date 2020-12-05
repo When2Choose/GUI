@@ -7,8 +7,8 @@ import "./AdminReport.css";
 
 class AdminReport extends React.Component {
   rows = [];
-  createData(choice, date, complete) {
-    return { choice, date, complete};
+  createData(choice, description, date, complete) {
+    return { choice, description, date, complete};
   };
 
   componentDidMount() {
@@ -21,7 +21,7 @@ class AdminReport extends React.Component {
       if (xmlhttp.readyState === XMLHttpRequest.DONE && xmlhttp.status === 200) {
         let choices = JSON.parse(xmlhttp.response.response)["Choices"];
         for (let i = 0; i < choices.length; i++) {
-          this.rows.push(this.createData("Choice " + choices[i]["ID"], choices[i]["DateCreated"], choices[i]["isCompleted"]));
+          this.rows.push(this.createData("Choice " + choices[i]["ID"], choices[i]["description"], choices[i]["DateCreated"], choices[i]["isCompleted"]));
         }
         this.forceUpdate();
 
@@ -41,6 +41,7 @@ class AdminReport extends React.Component {
               <TableHead>
                 <TableRow>
                   <TableCell style={{fontWeight: "bold",}}> Choice </TableCell>
+                  <TableCell style={{fontWeight: "bold"}}> Description </TableCell>
                   <TableCell style={{fontWeight: "bold",}}> Date Created </TableCell>
                   <TableCell style={{fontWeight: "bold",}}> Complete </TableCell>
                 </TableRow>
@@ -51,6 +52,7 @@ class AdminReport extends React.Component {
                     <TableCell component="th" scope="row">
                       {row.choice}
                     </TableCell>
+                    <TableCell>{row.description}</TableCell>
                     <TableCell>{row.date}</TableCell>
                     <TableCell>{row.complete.toString()}</TableCell>
                   </TableRow>
