@@ -90,7 +90,7 @@ class Alternatives extends React.Component {
             }
         }
         const data = {
-            alternative: parseInt(this.props.number),
+            alternativeIndex: parseInt(this.props.number),
             choiceId: localStorage.getItem("choiceID")
         }
         console.log("local: " + JSON.stringify(data));
