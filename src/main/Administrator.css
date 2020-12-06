@@ -31,3 +31,7 @@ div.DeleteChoices {
 div.DeleteChoicesButton {
   padding: 3%;
 }
+
+#deleteChoicesSuccess {
+  visibility: hidden;
+}
