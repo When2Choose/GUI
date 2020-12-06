@@ -26,6 +26,7 @@ class ViewChoice extends React.Component {
     }
 
     componentDidMount() {
+        console.log("viewing");
         const id = localStorage.getItem("choiceID");
         let xmlhttp = new XMLHttpRequest();
         const postTo = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice";

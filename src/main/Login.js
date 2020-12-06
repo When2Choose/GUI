@@ -24,7 +24,12 @@ function Login() {
                     choiceID = document.getElementById("ChoiceID").value;
                     localStorage.setItem("user", JSON.parse(xmlhttp.response.response)["name"]);
                     localStorage.setItem("choiceID", JSON.parse(xmlhttp.response.response)["ID"]);
-                    window.location.href="#/view/";
+                    console.log(JSON.parse(xmlhttp.response.response)["complete"]);
+                    if (!JSON.parse(xmlhttp.response.response)["complete"]) {
+                        window.location.href = "#/view/";
+                    } else {
+                        window.location.href="#/completeChoice/";
+                    }
                 } else if (this.response.statusCode === 400) {
                     alert("ERROR: "+this.response.response);
                 }

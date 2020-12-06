@@ -1,11 +1,5 @@
 import React from "react";
-import {
-    Button,
-    Typography,
-    Card,
-    Grid,
-    CardContent
-} from "@material-ui/core";
+import {Button, Card, CardContent, Grid, Typography} from "@material-ui/core";
 import "./Alternative.css"
 import {withRouter} from "react-router-dom";
 import Feedback from "./Feedback";
@@ -83,7 +77,7 @@ class Alternatives extends React.Component {
         xmlhttp.onloadend = () => {
             console.log("Response: " + JSON.stringify(xmlhttp.response));
             if(xmlhttp.response.statusCode === 200) {
-              window.location.href="#/completeChoice/";
+                window.location.href = "#/completeChoice/";
             }
             else if (xmlhttp.response.statusCode === 400) {
                 alert("ERROR: " + xmlhttp.response.response);
