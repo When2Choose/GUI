@@ -43,6 +43,14 @@ class CompletedAlternative extends React.Component {
         }));
     }
 
+    isChosen() {
+      if(this.props.notChosen) {
+        return "";
+      } else {
+        return " - Chosen Alternative"
+      }
+    }
+
     render() {
         return (
             <Grid item xs={12}>
@@ -52,7 +60,7 @@ class CompletedAlternative extends React.Component {
                             <Grid container spacing={3}>
                                 <Grid item xs={12}>
                                     <Typography variant="h3"
-                                                align="left">Alternative {parseInt(this.props.number) + 1}</Typography>
+                                                align="left">Alternative {parseInt(this.props.number) + 1 + this.isChosen()}</Typography>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography variant="body1" display="block" align="left"
@@ -131,7 +139,8 @@ class CompletedAlternative extends React.Component {
 CompletedAlternative.defaultProps = {
     approvers: [],
     disapprovers: [],
-    feedback: []
+    feedback: [],
+    notChosen: true
 }
 
 
