@@ -33,22 +33,22 @@ class CompleteChoice extends React.Component {
     xmlhttp.responseType = "json";
     xmlhttp.onloadend = () => {
       console.log("Response: " + JSON.stringify(xmlhttp.response));
-      // console.log("Response: " + JSON.par);
       if(xmlhttp.readyState === XMLHttpRequest.DONE && xmlhttp.response.statusCode === 200) {
         document.getElementById("CompleteChoiceContent").style.visibility = "visible";
         document.getElementById("choiceDescription").innerText = JSON.parse(xmlhttp.response.response)["Description"];
         let alternatives = JSON.parse(xmlhttp.response.response)["Alternatives"];
         for (let i = 0; i < 5; i++) {
           let tempAlternatives = this.state.alternatives;
-          if (alternatives[i]["isChosen"] === 0) {
+          if (alternatives[i]["description"] === "") {
               tempAlternatives[i] = false;
           } else {
             document.getElementById("details" + i).innerText = alternatives[i]["description"];
-
+            let notChosen = (alternatives[i]["isChosen"] === 0);
             tempAlternatives[i] = <CompletedAlternative number={i.toString()}
                                                approvers={alternatives[i]["Approvers"]}
                                                disapprovers={alternatives[i]["Disapprovers"]}
-                                               feedback={alternatives[i]["Feedback"]}/>;
+                                               feedback={alternatives[i]["Feedback"]}
+                                               notChosen={notChosen}/>;
           }
 
           this.setState({alternatives: tempAlternatives});
