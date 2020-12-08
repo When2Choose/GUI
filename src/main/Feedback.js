@@ -54,7 +54,7 @@ class Feedback extends React.Component {
                                     <Typography variant="body1" align="left">{value["description"]}</Typography>
                                 </Grid>
                                 <Grid item>
-                                    <Typography variant="body2" align="left">posted by: {value["User"]}</Typography>
+                                    <Typography variant="body2" align="left">posted by: {value["username"]} on {value["dateCreated"]}</Typography>
                                 </Grid>
                             </Grid>
                         </CardContent>
