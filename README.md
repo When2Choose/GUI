@@ -1,5 +1,8 @@
 # Choice app
 
+User: https://io3733website.s3.amazonaws.com/index.html#/administrator
+Admin: https://io3733website.s3.amazonaws.com/index.html#/
+
 Choice App is a webapp for teams to easily poll choices and get feedback from each member of the team.
 
 ## Making a Choice
