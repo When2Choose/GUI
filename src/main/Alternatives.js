@@ -1,8 +1,9 @@
 import React from "react";
-import {Button, Card, CardContent, Grid, Typography} from "@material-ui/core";
+import {Button, Card, CardContent, Grid, IconButton, Typography} from "@material-ui/core";
 import "./Alternative.css"
 import {withRouter} from "react-router-dom";
 import Feedback from "./Feedback";
+import {ThumbDown, ThumbUp} from "@material-ui/icons";
 
 class Alternatives extends React.Component {
 
@@ -76,10 +77,9 @@ class Alternatives extends React.Component {
         xmlhttp.responseType = "json";
         xmlhttp.onloadend = () => {
             console.log("Response: " + JSON.stringify(xmlhttp.response));
-            if(xmlhttp.response.statusCode === 200) {
+            if (xmlhttp.response.statusCode === 200) {
                 window.location.href = "#/completeChoice/";
-            }
-            else if (xmlhttp.response.statusCode === 400) {
+            } else if (xmlhttp.response.statusCode === 400) {
                 alert("ERROR: " + xmlhttp.response.response);
             }
         }
@@ -178,18 +178,18 @@ class Alternatives extends React.Component {
     getApproveColor() {
         const name = localStorage.getItem("user");
         if (this.props.approvers.includes(name)) {
-            return "default";
-        } else {
             return "primary";
+        } else {
+            return "default";
         }
     }
 
     getDisapproveColor() {
         const name = localStorage.getItem("user");
         if (this.props.disapprovers.includes(name)) {
-            return "default";
-        } else {
             return "primary";
+        } else {
+            return "default";
         }
     }
 
@@ -205,7 +205,8 @@ class Alternatives extends React.Component {
                                                 align="left">Alternative {parseInt(this.props.number) + 1}</Typography>
                                 </Grid>
                                 <Grid item xs={9}>
-                                    <Button variant="contained" className="completeButton" color="primary" onClick={this.handleComplete}>Complete</Button>
+                                    <Button variant="contained" className="completeButton" color="primary"
+                                            onClick={this.handleComplete}>Complete</Button>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <Typography variant="body1" display="block" align="left"
@@ -225,9 +226,11 @@ class Alternatives extends React.Component {
                                                                     </Typography>
                                                                 </Grid>
                                                                 <Grid item xs={12}>
-                                                                    <Button variant="contained" id="Approve"
-                                                                            color={this.getApproveColor()}
-                                                                            onClick={this.handleApprove}>Approve</Button>
+                                                                    <IconButton
+                                                                        color={this.getApproveColor()}
+                                                                        onClick={this.handleApprove}>
+                                                                        <ThumbUp fontSize={"large"}/>
+                                                                    </IconButton>
                                                                 </Grid>
                                                             </Grid>
                                                         </Grid>
@@ -252,9 +255,11 @@ class Alternatives extends React.Component {
                                                                     </Typography>
                                                                 </Grid>
                                                                 <Grid item xs={12}>
-                                                                    <Button variant="contained" id="Disapprove"
-                                                                            color={this.getDisapproveColor()}
-                                                                            onClick={this.handleDisapprove}>Disapprove</Button>
+                                                                    <IconButton
+                                                                        color={this.getDisapproveColor()}
+                                                                        onClick={this.handleDisapprove}>
+                                                                        <ThumbDown fontSize={"large"}/>
+                                                                    </IconButton>
                                                                 </Grid>
                                                             </Grid>
                                                         </Grid>
@@ -277,7 +282,8 @@ class Alternatives extends React.Component {
                                             </Typography>
                                         </Grid>
                                         <Grid item xs={12}>
-                                            <Feedback number={this.props.number} feedback={this.props.feedback} notComplete={true}/>
+                                            <Feedback number={this.props.number} feedback={this.props.feedback}
+                                                      notComplete={true}/>
                                         </Grid>
                                     </Grid>
                                 </Grid>
