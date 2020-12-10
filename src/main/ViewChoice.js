@@ -34,23 +34,27 @@ class ViewChoice extends React.Component {
         xmlhttp.onloadend = () => {
             console.log("Response: " + JSON.stringify(xmlhttp.response));
             if (xmlhttp.readyState === XMLHttpRequest.DONE && xmlhttp.response.statusCode === 200) {
-                document.getElementById("ViewChoiceContent").style.visibility = "visible";
-                document.getElementById("choiceDescription").innerText = JSON.parse(xmlhttp.response.response)["Description"];
-                let alternatives = JSON.parse(xmlhttp.response.response)["Alternatives"];
-                for (let i = 0; i < 5; i++) {
-                    let tempAlternatives = this.state.alternatives;
-                    if (alternatives[i]["description"] === "") {
-                        tempAlternatives[i] = false;
-                    } else {
-                        document.getElementById("details" + i).innerText = alternatives[i]["description"];
-                        tempAlternatives[i] = <Alternative number={i.toString()}
-                                                           approvers={alternatives[i]["Approvers"]}
-                                                           disapprovers={alternatives[i]["Disapprovers"]}
-                                                           feedback={alternatives[i]["Feedback"]}/>;
+                if (JSON.parse(xmlhttp.response.response)["DateCompleted"] !== "Not Complete"){
+                    window.location.href = "#/completeChoice";
+                } else {
+                    document.getElementById("ViewChoiceContent").style.visibility = "visible";
+                    document.getElementById("choiceDescription").innerText = JSON.parse(xmlhttp.response.response)["Description"];
+                    let alternatives = JSON.parse(xmlhttp.response.response)["Alternatives"];
+                    for (let i = 0; i < 5; i++) {
+                        let tempAlternatives = this.state.alternatives;
+                        if (alternatives[i]["description"] === "") {
+                            tempAlternatives[i] = false;
+                        } else {
+                            document.getElementById("details" + i).innerText = alternatives[i]["description"];
+                            tempAlternatives[i] = <Alternative number={i.toString()}
+                                                               approvers={alternatives[i]["Approvers"]}
+                                                               disapprovers={alternatives[i]["Disapprovers"]}
+                                                               feedback={alternatives[i]["Feedback"]}/>;
+                        }
+                        this.setState({alternatives: tempAlternatives});
                     }
-                    this.setState({alternatives: tempAlternatives});
+                    this.forceUpdate();
                 }
-                this.forceUpdate();
             }
         };
         const data =

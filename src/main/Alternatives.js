@@ -70,7 +70,6 @@ class Alternatives extends React.Component {
     }
 
     handleComplete() {
-        console.log(this.props.number);
         const api_url = "https://oncs4wp3hd.execute-api.us-east-1.amazonaws.com/beta/choice/completeChoice";
         let xmlhttp = new XMLHttpRequest();   // new HttpRequest instance
         xmlhttp.open("POST", api_url, true);
